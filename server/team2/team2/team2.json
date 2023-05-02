@@ -1,0 +1,10 @@
+{
+    "token":"string",
+    "mail":{
+       "title":"string",
+       "to":"string",
+       "from":"string",
+       "body":"string",
+       "day":"string"
+    }
+ }
