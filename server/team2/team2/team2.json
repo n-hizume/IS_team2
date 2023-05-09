@@ -1,10 +1,11 @@
 {
     "token":"string",
     "mail":{
+      
        "title":"string",
        "to":"string",
        "from":"string",
        "body":"string",
-       "day":"string"
+       "day":"2023-05-09"
     }
  }
