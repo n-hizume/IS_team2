@@ -43,10 +43,13 @@ class GmailApiManager:
 
         return {
             "id": detail["id"],
+            "threadId": detail["threadId"],
             "snipet": detail["snippet"],
             "body": body,
             "subject": [ header["value"] for header in detail["payload"]["headers"] if header["name"] == "Subject"][0],
-            "from": [ header["value"] for header in detail["payload"]["headers"] if header["name"] == "From"][0]
+            "from": [ header["value"] for header in detail["payload"]["headers"] if header["name"] == "From"][0],
+            "to": [ header["value"] for header in detail["payload"]["headers"] if header["name"] == "To"][0],
+            "date": [ header["value"] for header in detail["payload"]["headers"] if header["name"] == "Date"][0],
         }
     
     
