@@ -2,6 +2,7 @@
 
 ## request (client -> server)
 
+```
 {
     auth: {
         "token": "*****",
@@ -10,10 +11,12 @@
     }
 
 }
+```
+
 
 
 ## response (server -> client)
-
+```
 { 
     "mails":[
         {   
@@ -34,11 +37,11 @@
     ]
 
 }
-
+```
 # [POST] mail/send
 
 ## request (client -> server)
-
+```
 {
     auth: {
         "token": "*****",
@@ -47,10 +50,10 @@
     }
 
 }
-
+```
 
 ## response (server -> client)
-
+```
 { 
     "mail":{   
             "id":"string",
@@ -64,5 +67,5 @@
     }
     
 }
-
+```
 get, post(get+データ送る), 
