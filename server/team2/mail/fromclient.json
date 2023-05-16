@@ -1,10 +1,20 @@
-{
-    "token":"string",
+{   "auth":{
+        "token": "*****",
+        "refresh_token": "***",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "client_id": "290280505278-hhr4ntaj474n0cr6e4ruhksooh6l8tk8.apps.googleusercontent.com",
+        "client_secret": "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",
+        "scopes": [
+            "https://www.googleapis.com/auth/gmail.readonly"
+        ],
+        "expiry": "2023-04-25T10:10:50.292762Z"
+    },
+
     "mail":{
-       "title":"string",
-       "to":"string",
-       "from":"string",
-       "body":"string",
-       "date":"2023-05-09"
+        "title":"string",
+        "to":"string",
+        "from":"string",
+        "body":"string",
+        "date":"2023-05-09"
     }
  }
