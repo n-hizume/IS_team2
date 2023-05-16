@@ -61,7 +61,6 @@
             "to": "string",
     }
     
-
 }
 
 get, post(get+データ送る), 
