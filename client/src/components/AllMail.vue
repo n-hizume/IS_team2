@@ -36,28 +36,14 @@
 
 <script setup>
 
-import { defineProps } from 'vue';
-
-
-
-defineProps({
-  serverData: {
-    type: Object,
-    required: true
-  },
-  selectMail: {
-    type: Object,
-    required: null
-  }
-
-  
-});
-
 import { useRouter } from "vue-router";
+import store from '@/store/index';
+
+
 const router = useRouter()
 
-const selectMail = () => {
-  // emit('update:selectedMail', mail);
+const selectMail = (mail) => {
+  store.commit('setFocusMail', mail);
   router.push('/email/maildetail')
 };
 
@@ -200,6 +186,7 @@ const serverData = {
         
     ]
 }
+
 
 const mailDatas = [];
 

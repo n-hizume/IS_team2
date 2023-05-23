@@ -74,8 +74,9 @@ import ReplyAll from "vue-material-design-icons/ReplyAllOutline.vue";
 import Reply from "vue-material-design-icons/ReplyOutline.vue";
 import SettingInformation from '@/components/SettingInformation.vue';
 import IconComponent from "@/components/IconComponent.vue";
-
 import { useRouter } from "vue-router";
+import store from '@/store/index';
+
 const router = useRouter()
 const movewriteScreen = () => {
   router.push('/write')
@@ -91,11 +92,7 @@ const movewriteScreen = () => {
 // });
 
 // const mail = $router.params.mail;
-const mail = {
-  from: "hirayamasaki@kuhp-kyoto-u.ac.jp",
-  date: "2022/2/22",
-  body: "あいうえおかきくけこ"
-}
+const mail = store.state.focus_mail;
 
 </script>
 
