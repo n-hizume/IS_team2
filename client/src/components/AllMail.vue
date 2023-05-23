@@ -63,6 +63,7 @@ const selectMail = () => {
 
 
 
+
 const serverData = { 
     "mails":[
         {   
@@ -73,8 +74,8 @@ const serverData = {
             "subject": "test: from isteam2 to hizumee228", //メールのタイトル
             "from": "Naoki Hizume <ku.is.team2@gmail.com>", //送信者
             "to": "hizumee228@gmail.com", //受信者(=自分)
-            "date": "2023-05-17", //メールの受信日時
-            "expiry": "2023-05-25:00:00:00" //我々のアプリで設定されたメールの締め切り日時(設定していなければnull)
+            "date": "2023-05-23T10:10+09:00", //メールの受信日時
+            "expiry": "" //我々のアプリで設定されたメールの締め切り日時(設定していなければnull)
         },
         {   
             "id":"opqrstu",
@@ -84,8 +85,8 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-26"
+            "date": "2023-05-23T10:10+09:00",
+            "expiry": "2023-05-24T23:00+09:00"
         },
         {   
             "id":"agdhbfs",
@@ -95,8 +96,8 @@ const serverData = {
             "subject": "test ver 3",
             "from": "Saki Hirayama <hirayamasaki@kuhp.kyoto-u.ac.jp>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-10",
-            "expiry": "2023-05-28:00:00:00"
+            "date": "2023-05-22T10:10+09:00",
+            "expiry": "2023-05-25T23:00+09:00"
         },
         {   
             "id":"ahfksjd",
@@ -106,8 +107,8 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Saki Hirayama <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-25:00:00:00"
+            "date": "2023-05-20T10:10+09:00",
+            "expiry": "2023-05-26T23:00+09:00"
         },
         {   
             "id":"aaaaaaa",
@@ -117,8 +118,8 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-25:00:00:00"
+            "date": "2023-05-19T10:10+09:00",
+            "expiry": "2023-05-20T23:00+09:00"
         },
         {   
             "id":"aaaaaaa",
@@ -128,8 +129,8 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-25:00:00:00"
+            "date": "2023-05-19T10:10+09:00",
+            "expiry": "2023-05-21T23:00+09:00"
         },
         {   
             "id":"aaaaaaa",
@@ -139,8 +140,8 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-25:00:00:00"
+            "date": "2023-05-18T10:10+09:00",
+            "expiry": "2023-05-19T23:00+09:00"
         },
         {   
             "id":"aaaaaaa",
@@ -150,8 +151,8 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-25:00:00:00"
+            "date": "2023-05-17T10:10+09:00",
+            "expiry": "2023-05-17T23:00+09:00"
         },
         {   
             "id":"aaaaaaa",
@@ -161,8 +162,8 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-25:00:00:00"
+            "date": "2023-05-16T10:10+09:00",
+            "expiry": "2023-05-17T23:00+09:00"
         },
         {   
             "id":"aaaaaaa",
@@ -172,8 +173,8 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-25:00:00:00"
+            "date": "2023-05-15T10:10+09:00",
+            "expiry": "2023-05-16T23:00+09:00"
         },
         {   
             "id":"aaaaaaa",
@@ -183,8 +184,8 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-25:00:00:00"
+            "date": "2023-05-14T10:10+09:00",
+            "expiry": "2023-05-15T23:00+09:00"
         },
         {   
             "id":"aaaaaaa",
@@ -194,18 +195,47 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-25:00:00:00"
+            "date": "2023-05-12T10:10+09:00",
+            "expiry": "2023-05-13T23:00+09:00"
         },
         
     ]
 }
 
+function formatDate(date) {
+  const today = new Date(); // 今日の日付を取得
+  const yesterday = new Date(today); // 今日の日付をコピーして昨日の日付を作成
+  yesterday.setDate(yesterday.getDate() - 1); // 昨日の日付に変更
+
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  if (
+    date.getDate() === today.getDate() &&
+    date.getMonth() === today.getMonth() &&
+    date.getFullYear() === today.getFullYear()
+  ) {
+    return "今日";
+  } else if (
+    date.getDate() === yesterday.getDate() &&
+    date.getMonth() === yesterday.getMonth() &&
+    date.getFullYear() === yesterday.getFullYear()
+  ) {
+    return "昨日";
+  } else {
+    return month + "月" + day + "日";
+  }
+}
+
 const mailDatas = [];
 
 for(const mail of serverData.mails){
-  var date = new Date(mail.date)
-  var expiry = new Date(mail.expiry)
+  
+    
+    var date = new Date(mail.date);
+    var expiry = new Date(mail.expiry);
+  
+
   
   mailDatas.push({
     "id": mail.id, //メールのID
@@ -215,8 +245,8 @@ for(const mail of serverData.mails){
     "subject": "test: from isteam2 to hizumee228", //メールのタイトル
     "from": "Naoki Hizume <ku.is.team2@gmail.com>", //送信者
     "to": "hizumee228@gmail.com", //受信者(=自分)
-    "date": date.getDate(), //メールの受信日時
-    "expiry": expiry.getDate(), //我々のアプリで設定されたメールの締め切り日時(設定していなければnull)
+    "date": formatDate(date),
+    "expiry": formatDate(expiry),
   });
   
 }
@@ -249,6 +279,12 @@ for(const mail of serverData.mails){
   .mailbox{
     height: 739px;
     background: #F4F4F3;
+  }
+
+  
+
+  .date.expirynotempty {
+    display: none
   }
 
 
