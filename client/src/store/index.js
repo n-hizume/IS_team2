@@ -9,7 +9,7 @@ const store = createStore({
                 expiry_date: null,
             },
             mails: [],
-            focus_mail: null
+            focus_mail_id: null
         }
     },
     mutations: {
@@ -19,8 +19,8 @@ const store = createStore({
         setMails (state, mails) {
             state.mails = mails
         },
-        setFocusMail (state, mail) {
-            state.focus_mail = mail
+        setFocusMailId (state, id) {
+            state.focus_mail_id = id
         }
     }
 })
