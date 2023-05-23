@@ -6,6 +6,7 @@ from email.mime.text import MIMEText
 from .creds.app import APP_CONFIG
 import base64
 import json
+from datetime import datetime, timedelta
 
 class GmailApiManager:
     def __init__(self):
@@ -32,6 +33,12 @@ class GmailApiManager:
         service = build('gmail', 'v1', credentials=creds)
 
         return service
+
+    def parse_date(date_str):
+        date = "Mon, 15 May 2023 17:15:20 GMT"
+        datetime_onj = datetime.strptime(date_str, "%a, %d %b %Y %H:%M:%S %Z")
+        datetime_jpn = datetime_onj + timedelta(hours=9)
+        return datetime_jpn.strftime("%Y/%m/%dT%H:%M:%S+09:00")
     
     def parse_mail_detail(self, detail):
 
@@ -51,7 +58,7 @@ class GmailApiManager:
             "subject": [ header["value"] for header in detail["payload"]["headers"] if header["name"].lower() == "subject"][0],
             "from": [ header["value"] for header in detail["payload"]["headers"] if header["name"].lower() == "from"][0],
             "to": [ header["value"] for header in detail["payload"]["headers"] if header["name"].lower() == "to"][0],
-            "date": [ header["value"] for header in detail["payload"]["headers"] if header["name"].lower() == "date"][0],
+            "date": [ self.parse_date(header["value"]) for header in detail["payload"]["headers"] if header["name"].lower() == "date"][0],
         }
     
     
@@ -115,6 +122,13 @@ class GmailApiManager:
 
         return res
     
+    def delete_label(self, access_token, refresh_token, expiry_date, mail_id):
+        service = self.get_service(access_token, refresh_token, expiry_date)
+        res = (
+            service.users()
+            .labels(userId="me", id=mail_id)
+        )
+
 
 
 def get_sample_user_info():
@@ -131,10 +145,10 @@ def get_sample_user_info():
 if __name__ == '__main__':
     user_info = get_sample_user_info()
     manager = GmailApiManager()
-    # messages = manager.get_message_list(user_info["access_token"], user_info["refresh_token"], user_info["expiry_date"])
-    # if messages:
-    #     for message in messages:
-    #         print(message["subject"])
+    messages = manager.get_message_list(user_info["access_token"], user_info["refresh_token"], user_info["expiry_date"])
+    if messages:
+        for message in messages:
+            print(message)
     
-    res = manager.send_mail(user_info["access_token"], user_info["refresh_token"], user_info["expiry_date"], "hizumee228@gmail.com", "APIテスト", "こんにちは。\nこれはテストです。")
-    print(res)
+    # res = manager.send_mail(user_info["access_token"], user_info["refresh_token"], user_info["expiry_date"], "hizumee228@gmail.com", "APIテスト", "こんにちは。\nこれはテストです。")
+    # print(res)
