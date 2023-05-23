@@ -43,8 +43,9 @@ import store from '@/store/index';
 const router = useRouter()
 
 const selectMail = (mail) => {
-  store.commit('setFocusMail', mail);
-  router.push('/email/maildetail')
+  store.commit("setFocusMailId", mail.id);
+  var query = Object.assign({}, {"name":"maildetail", query: {id: mail.id}});
+  router.push(query);
 };
 
 
@@ -77,9 +78,9 @@ const mailDatas = [];
 
 for(const mail of store.state.mails){
   
-    var date = new Date(mail.date);
-    var expiry = new Date(mail.expiry);
-  
+  var date = new Date(mail.date);
+  var expiry = new Date(mail.expiry);
+
   mailDatas.push({
     "id": mail.id, //メールのID
     "threadId": mail.threadId, //メールのスレッドID
@@ -93,6 +94,7 @@ for(const mail of store.state.mails){
   });
   
 }
+
 
 </script>
 
