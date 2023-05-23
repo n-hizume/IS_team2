@@ -17,6 +17,7 @@ const routes = [
   },
   {
     path: '/email',
+    name: 'email',
     component: EmailView,
     children: [
       {

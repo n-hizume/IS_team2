@@ -74,16 +74,21 @@ import SettingInformation from '@/components/SettingInformation.vue';
 import IconComponent from "@/components/IconComponent.vue";
 import { useRouter } from "vue-router";
 import store from '@/store/index';
+import { watch } from 'vue';
 
-const router = useRouter()
-const movewriteScreen = () => {
-  router.push('/write')
-};
 
-const mailId = store.state.focus_mail_id;
-console.log(mailId)
+var router = useRouter();
+var mailId = router.currentRoute.value.query.id;
+var mail = store.getters.getMailById(mailId);
 
-const mail = store.state.mails.filter(mail => mail.id === mailId)[0];
+watch(
+  () => router.currentRoute.value.query.id,
+  (newMailId) => {
+    mailId = newMailId;
+    mail = store.getters.getMailById(mailId);
+  }
+);
+
 
 </script>
 
