@@ -7,7 +7,7 @@
     "auth": {
         "token": "*****",
         "refresh_token": "***",
-        "expiry": "2023/04/25/ 10:10:50"
+        "expiry": int
     }
 
 }
@@ -27,8 +27,8 @@
             "subject": "string",
             "from": "string",
             "to": "string",
-            "date": "2023-05-09"
-            "expiry": int
+            "date": "2023-05-09T10:10+09:00"
+            "expiry": "2023-05-10T24:00+09:00"
         },
         {
 
@@ -46,7 +46,7 @@
     "auth": {
         "token": "*****",
         "refresh_token": "***",
-        "expiry": "2023/04/25/ 10:10:50"
+        "expiry": int
     },
     "mail": {
         "to": "string",
