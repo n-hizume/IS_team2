@@ -2,6 +2,16 @@
 
 ### Tutorial series on how to build this
 
+If you'd like a step by step guide on how to build this just **CLICK THE IMAGE BELOW**
+
+[![GO TO JOHN WEEKS DEV TUTORIAL VIDEOS](https://user-images.githubusercontent.com/108229029/208315507-39a5cac2-47bc-4559-95db-db0fab56bc01.jpeg)](https://www.youtube.com/watch?v=KE5sQiHRZQg)
+
+Come and check out my YOUTUBE channel for lots more tutorials -> https://www.youtube.com/@johnweeksdev
+
+**LIKE**, **SUBSCRIBE**, and **SMASH THE NOTIFICATION BELL**!!!
+
+## App Setup
+
 Clone the repository
 ```
 git clone https://github.com/John-Weeks-Dev/gmail-clone.git

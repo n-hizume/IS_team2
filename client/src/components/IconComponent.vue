@@ -45,11 +45,8 @@
 
 <script setup>
   import { defineProps, toRefs } from "vue";
-  //import MenuIcon from "vue-material-design-icons/Menu.vue";
-  import {Menu} from '@element-plus/icons-vue'
-  <el-icon><Minus /></el-icon>
+  import MenuIcon from "vue-material-design-icons/Menu.vue";
   import MagnifyIcon from "vue-material-design-icons/Magnify.vue";
-
   import TuneIcon from "vue-material-design-icons/Tune.vue";
   import HelpIcon from "vue-material-design-icons/Help.vue";
   import CogOutlineIcon from "vue-material-design-icons/CogOutline.vue";
@@ -69,8 +66,7 @@
   let icon = null
 
   if (iconString.value === 'menu') {
-    //icon = MenuIcon
-    icon = Menu
+    icon = MenuIcon
   }
 
   if (iconString.value === 'magnify') {
