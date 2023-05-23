@@ -65,7 +65,7 @@
 }
 ```
 
-# [POST] /translate/gpt
+# [POST] /translation/gpt
 
 ## request
 
