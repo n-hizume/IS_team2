@@ -23,6 +23,7 @@ const routes = [
         path: 'maildetail',
         component: MailDetail
       }
+      
     ]
   },
   {
@@ -31,7 +32,14 @@ const routes = [
   },
   {
     path: '/alarm',
-    component: AlarmView
+    component: AlarmView,
+    children: [
+      {
+        path: 'maildetail',
+        component: MailDetail
+      }
+      
+    ]
   },
   {
     path: '/alarm.write',
