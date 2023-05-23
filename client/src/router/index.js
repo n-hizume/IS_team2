@@ -6,12 +6,10 @@ import EmailWriteView from '../views/EmailWriteView.vue'
 import AlarmView from '../views/AlarmView.vue'
 import AlarmWriteView from '../views/AlarmWriteView.vue'
 import SendView from '../views/SendView.vue'
-import HomeView from '../views/HomeView.vue'
 import MessageView from '../views/MessageView.vue'
 import LoginView from '../views/LoginView.vue'
 // import PageNotFound from '../views/PageNotFound.vue'
 
-import { useUserStore } from '@/store/user-store'
 
 const routes = [
   {

@@ -35,11 +35,6 @@ import AllMail from '@/components/AllMail.vue';
 //import Reply from "vue-material-design-icons/ReplyOutline.vue";
 //import Information from "vue-material-design-icons/InformationOutline.vue";
 
-import { useRouter } from "vue-router";
-const router = useRouter()
-
-
-
 
 const serverData = { 
     "mails":[

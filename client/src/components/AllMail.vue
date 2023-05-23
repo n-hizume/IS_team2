@@ -36,7 +36,7 @@
 
 <script setup>
 
-import { defineProps, emit } from 'vue';
+import { defineProps } from 'vue';
 
 
 
@@ -56,7 +56,7 @@ defineProps({
 import { useRouter } from "vue-router";
 const router = useRouter()
 
-const selectMail = (mail) => {
+const selectMail = () => {
   // emit('update:selectedMail', mail);
   router.push('/email/maildetail')
 };
