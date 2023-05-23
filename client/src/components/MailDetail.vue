@@ -5,8 +5,6 @@
             <IconComponent
               iconString="back"
               :iconSize="19"
-              
-              
               hoverColor="hover:bg-gray-100"
             />
           </router-link>
