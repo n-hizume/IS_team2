@@ -23,20 +23,8 @@
 
 <script setup>
 
-import { ref } from 'vue';
 import SideMenu from '@/components/SideMenu.vue';
 import AllMail from '@/components/AllMail.vue';
-
-
-
-
-const selectedMail = ref(null);
-
-const updateSelectedMail = (mail) => {
-  selectedMail.value = mail;
-};
-
-
 
 
 
