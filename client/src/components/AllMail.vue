@@ -48,13 +48,10 @@ import ClockOutlineIcon from "vue-material-design-icons/ClockOutline.vue";
 import { useRouter } from "vue-router";
 import store from '@/store/index';
 
-
 const router = useRouter()
 
-const selectMail = (mail) => {
-  store.commit("setFocusMailId", mail.id);
-  var query = Object.assign({}, {"name":"maildetail", query: {id: mail.id}});
-  router.push(query);
+var selectMail = (mail) => {
+  router.push({ name: "maildetail", query: { id: mail.id }});
 };
 
 

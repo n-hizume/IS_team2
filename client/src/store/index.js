@@ -22,6 +22,11 @@ const store = createStore({
         setFocusMailId (state, id) {
             state.focus_mail_id = id
         }
+    },
+    getters: {
+        getMailById: (state) => (id) => {
+            return state.mails.find(mail => mail.id === id)
+        },
     }
 })
 
