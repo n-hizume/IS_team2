@@ -18,9 +18,15 @@
             </div>  
             <div class="ml-5">
               
-              <p style="font-size:10px">{{ mail.expiry }}</p>
-            
-              <p style="font-size:10px">{{ mail.date }}</p>
+              <div v-bind:class="{'notexist': mail.expiry==''}" style="color: crimson;" class="flex expiry">
+                  <ClockOutlineIcon :size="14" />
+                  <div class="ml-1.5">
+                    <p style="font-size:10px">{{ mail.expiry }}</p>
+                  </div>    
+                </div>
+                <div class="ml-5 mr-1">
+                  <p style="font-size:10px">{{ mail.date }}</p>
+                </div>
                 
             </div>
           </div>  
@@ -36,6 +42,9 @@
 
 <script setup>
 
+import ClockOutlineIcon from "vue-material-design-icons/ClockOutline.vue";
+
+
 import { useRouter } from "vue-router";
 import store from '@/store/index';
 
@@ -50,6 +59,9 @@ const selectMail = (mail) => {
 
 
 function formatDate(date) {
+  if(date==""){
+    return "";
+  }
   const today = new Date(); // 今日の日付を取得
   const yesterday = new Date(today); // 今日の日付をコピーして昨日の日付を作成
   yesterday.setDate(yesterday.getDate() - 1); // 昨日の日付に変更
@@ -76,10 +88,21 @@ function formatDate(date) {
 
 const mailDatas = [];
 
+// const today = mailDatas
+//   .filter(data => data.expiry >= "今日")
+//   .map(data => data.name);
+
+// console.log(today);
+
 for(const mail of store.state.mails){
   
   var date = new Date(mail.date);
-  var expiry = new Date(mail.expiry);
+  var expiry;
+  if (mail.expiry == ""){
+    expiry = "";
+  } else {
+    expiry = new Date(mail.expiry);
+  }
 
   mailDatas.push({
     "id": mail.id, //メールのID
@@ -90,7 +113,7 @@ for(const mail of store.state.mails){
     "from": "Naoki Hizume <ku.is.team2@gmail.com>", //送信者
     "to": "hizumee228@gmail.com", //受信者(=自分)
     "date": formatDate(date),
-    "expiry": formatDate(expiry),
+    "expiry": formatDate(expiry)
   });
   
 }
@@ -126,10 +149,10 @@ for(const mail of store.state.mails){
     background: #F4F4F3;
   }
 
-  
 
-  .date.expirynotempty {
-    display: none
+
+  .expiry.notexist {
+    display: none !important;
   }
 
 

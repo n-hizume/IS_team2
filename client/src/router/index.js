@@ -37,6 +37,7 @@ const routes = [
     children: [
       {
         path: 'maildetail',
+        
         component: MailDetail
       }
       
