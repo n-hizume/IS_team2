@@ -60,17 +60,29 @@
 ## response (server -> client)
 ```
 { 
-    "mail":{   
-            "id":"string",
-            "threadId": "string",
-            "snipet": "string",
-            "body": "string",
-            "subject": "string",
-            "from": "string",
-            "to": "string",
-            "expiry": "string"
-    }
+    "result": "string" ("success"/"failure")
     
 }
 ```
-get, post(get+データ送る), 
+
+# [POST] /translate/gpt
+
+## request
+
+```
+{
+    "word": "string"
+}
+```
+
+## response
+
+```
+{
+    translated_words: [
+        "string",
+        "string",
+        ...
+    ]
+}
+```
