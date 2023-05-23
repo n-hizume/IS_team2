@@ -12,25 +12,8 @@
           text="Delete selected"
           hoverColor="hover:bg-gray-100"
         />
-        <div class="text-xs text-gray-500">1-50 of 150</div>
+        <div class="text-xs text-gray-500">1-50 of 153</div>
       </div>
-    </div>
-
-    <div>
-      <MessageRow
-        from="aaa@bbb.com"
-        subject="Test row 1"
-        body="aaaaaa"
-        time="2023/5/16 09:46"
-      />
-    </div>
-    <div>
-      <MessageRow
-        from="cccc@ddd.com"
-        subject="Test row 2"
-        body="dfsgdfgfdgsdfg"
-        time="2023/5/16 09:46"
-      />
     </div>
 
     <div v-for="email in userStore.emails" :key="email">
@@ -44,7 +27,8 @@
           @selectedId="selectedId"
         />
     </div>
-  </div>
+
+</div>
 </template>
 
 <script setup>
