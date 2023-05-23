@@ -2,6 +2,7 @@ from googleapiclient.discovery import build
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from apiclient import errors
+from email.mime.text import MIMEText
 import base64
 import json
 
@@ -46,10 +47,10 @@ class GmailApiManager:
             "threadId": detail["threadId"],
             "snipet": detail["snippet"],
             "body": body,
-            "subject": [ header["value"] for header in detail["payload"]["headers"] if header["name"] == "Subject"][0],
-            "from": [ header["value"] for header in detail["payload"]["headers"] if header["name"] == "From"][0],
-            "to": [ header["value"] for header in detail["payload"]["headers"] if header["name"] == "To"][0],
-            "date": [ header["value"] for header in detail["payload"]["headers"] if header["name"] == "Date"][0],
+            "subject": [ header["value"] for header in detail["payload"]["headers"] if header["name"].lower() == "subject"][0],
+            "from": [ header["value"] for header in detail["payload"]["headers"] if header["name"].lower() == "from"][0],
+            "to": [ header["value"] for header in detail["payload"]["headers"] if header["name"].lower() == "to"][0],
+            "date": [ header["value"] for header in detail["payload"]["headers"] if header["name"].lower() == "date"][0],
         }
     
     
@@ -58,7 +59,8 @@ class GmailApiManager:
         messages = []
 
         max_results = 100
-        query = "label:CATEGORY_PERSONAL label:demo"
+        # query = "label:CATEGORY_PERSONAL label:demo"
+        query=""
 
         try:
             message_ids = (
@@ -80,8 +82,9 @@ class GmailApiManager:
                     .execute()
                 )
                 
-                message = self.parse_mail_detail(detail)
                 print(detail)
+                message = self.parse_mail_detail(detail)
+                # print(detail)
                 messages.append(message)
 
         except errors.HttpError as error:
@@ -89,6 +92,28 @@ class GmailApiManager:
 
 
         return messages
+    
+    def create_message(self, to, subject, body):
+        message = MIMEText(body)
+        message["to"] = to
+        message["from"] = "me"
+        message["subject"] = subject
+
+        encode_message = base64.urlsafe_b64encode(message.as_bytes())
+        return {"raw": encode_message.decode()}
+    
+    def send_mail(self, access_token, refresh_token, expiry_date, to, subject, body):
+        service = self.get_service(access_token, refresh_token, expiry_date)
+
+        message = self.create_message(to, subject, body)
+        res = (
+            service.users()
+            .messages()
+            .send(userId="me", body=message)
+            .execute()
+        )
+
+        return res
     
 
 
@@ -111,3 +136,5 @@ if __name__ == '__main__':
         for message in messages:
             print(message["subject"])
     
+    # res = manager.send_mail(user_info["access_token"], user_info["refresh_token"], user_info["expiry_date"], "hizumee228@gmail.com", "APIテスト", "こんにちは。\nこれはテストです。")
+    # print(res)
