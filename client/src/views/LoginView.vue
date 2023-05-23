@@ -10,19 +10,16 @@
 </template>
 
 <script setup>
-    import { useUserStore } from '@/store/user-store'
     import { onMounted } from '@vue/runtime-core'
     import { useRouter } from 'vue-router';
 
-    const userStore = useUserStore()
     const router = useRouter()
 
     onMounted(() => {
         setTimeout(() => { router.push('/email') }, 250)
     })
 
-    const callback = async (response) => {
-        await userStore.getUserDetailsFromGoogle(response)
+    const callback = async () => {
         setTimeout(() => { router.push('/email') }, 250)
     }
 </script>

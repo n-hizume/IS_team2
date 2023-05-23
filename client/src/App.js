@@ -38,7 +38,6 @@ Vue.component('div class="side-menu-bar"', {
                             <InboxIcon :size="17" />
                             <div class="text-sm pl-4 font-bold text-primary-600 text-align-left">受信箱</div>
                         </div>
-                        <!--div class="text-xs font-semibold"-->{{ userStore.emails.length }}<!--/div-->
                         </div>
                     </router-link>
 

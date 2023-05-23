@@ -51,14 +51,15 @@
         <div class="font-semibold text-sm mt-4 mb-4">
           <div class="w-full flex justify-between items-center">
             <!-- <div>{{ email.fromEmail }}</div> -->
-            hirayamasaki@kuhp-kyoto-u.ac.jp
+            <!-- hirayamasaki@kuhp-kyoto-u.ac.jp -->
+            {{ mail.from }}
             <!-- <div class="mr-5 text-xs font-normal">{{ email.createdAt }}</div> -->
-            <div class="mr-5 text-xs font-normal">2022/2/22</div>
+            <div class="mr-5 text-xs font-normal">{{ mail.date }}</div>
           </div>
           <span class="text-xs text-gray-500 font-normal">to me</span>
         </div>
         <!-- <div>{{ email.body }}</div> -->
-        <div>あいうえおかきくけこ</div>
+        <div>{{ mail.body }}</div>
       </div>
     </div>
   </div>  
@@ -80,14 +81,21 @@ const movewriteScreen = () => {
   router.push('/write')
 };
 
-import { defineProps } from 'vue';
+// import { defineProps } from 'vue';
 
-defineProps({
-  mail: {
-    type: Object,
-    required: true
-  }
-});
+// defineProps({
+//   mail: {
+//     type: Object,
+//     required: true
+//   }
+// });
+
+// const mail = $router.params.mail;
+const mail = {
+  from: "hirayamasaki@kuhp-kyoto-u.ac.jp",
+  date: "2022/2/22",
+  body: "あいうえおかきくけこ"
+}
 
 </script>
 

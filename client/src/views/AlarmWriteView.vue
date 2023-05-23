@@ -95,38 +95,14 @@
   import Reply from "vue-material-design-icons/ReplyOutline.vue";
   import SendOutlineIcon from "vue-material-design-icons/SendOutline.vue";
   
-  import { useUserStore } from "@/store/user-store";
-  
-  const userStore = useUserStore()
-  
-  let newMessageOpen = ref(false)
-  let toEmail = ref('')
-  let subject = ref('')
+
   let body = ref('')
   
   
   //import { useRouter } from "vue-router";
   
   const sendEmail = async () => {
-  
-  // eslint-disable-next-line no-useless-escape
-  const filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-  
-  if (!filter.test(toEmail.value)) {
-    alert('Please provide a valid email address');
     return
-  }
-  
-  await userStore.sendEmail({
-    toEmail: toEmail.value,
-    subject: subject.value,
-    body: body.value,
-  })
-  
-  newMessageOpen.value = false
-  toEmail.value = ''
-  subject.value = ''
-  body.value = ''
   }
   
   
