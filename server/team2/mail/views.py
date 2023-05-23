@@ -38,7 +38,7 @@ def getmailfunc(request):
         except IntegrityError:
             return render(request, '.html', {'error':''})"""
     else: 
-        return HttpResponse('POST ONLY')
+        return HttpResponse('post only')
     
 def sendmailfunc(request):
     if request.method == 'POST':
