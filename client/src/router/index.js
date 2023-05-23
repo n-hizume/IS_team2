@@ -38,7 +38,7 @@ const routes = [
     children: [
       {
         path: 'maildetail',
-        
+        name: 'maildetailforalarm',
         component: MailDetail
       }
       
