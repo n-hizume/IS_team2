@@ -1,6 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import EmailView from '../views/template/EmailView.vue'
+import MailDetail from '../components/MailDetail.vue'
+import EmailView from '../views/EmailView.vue'
+import EmailWriteView from '../views/EmailWriteView.vue'
+import AlarmView from '../views/AlarmView.vue'
+import AlarmWriteView from '../views/AlarmWriteView.vue'
+import SendView from '../views/SendView.vue'
 import HomeView from '../views/HomeView.vue'
 import MessageView from '../views/MessageView.vue'
 import LoginView from '../views/LoginView.vue'
@@ -15,21 +20,38 @@ const routes = [
   },
   {
     path: '/email',
-    beforeEnter: (to, from, next) => {
-      useUserStore().email ? next() : next('/')
-    },
     component: EmailView,
     children: [
-      {
-        path: '',
-        component: HomeView
-      },
+     
       {
         path: 'message/:id',
         component: MessageView
+      },
+      {
+        path: 'maildetail',
+        // component: MessageView
+        component: MailDetail
       }
     ]
-  }
+  },
+  {
+    path: '/write',
+    component: EmailWriteView
+  },
+  {
+    path: '/alarm',
+    component: AlarmView
+  },
+  {
+    path: '/alarm.write',
+    component: AlarmWriteView
+  },
+  {
+    path: '/send',
+    component: SendView
+  },
+ 
+  
   // ,
   // { 
   //   path: '*', 
