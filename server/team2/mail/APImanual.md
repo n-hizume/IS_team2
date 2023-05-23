@@ -47,6 +47,11 @@
         "token": "*****",
         "refresh_token": "***",
         "expiry": "expiry": "2023/04/25/ 10:10:50"
+    },
+    mail: {
+        to: "string",
+        subject: "string",
+        body: "string"
     }
 
 }
