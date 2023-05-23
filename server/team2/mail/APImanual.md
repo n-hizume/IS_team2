@@ -4,7 +4,7 @@
 
 ```
 {
-    auth: {
+    "auth": {
         "token": "*****",
         "refresh_token": "***",
         "expiry": "2023/04/25/ 10:10:50"
@@ -43,15 +43,15 @@
 ## request (client -> server)
 ```
 {
-    auth: {
+    "auth": {
         "token": "*****",
         "refresh_token": "***",
         "expiry": "expiry": "2023/04/25/ 10:10:50"
     },
-    mail: {
-        to: "string",
-        subject: "string",
-        body: "string"
+    "mail": {
+        "to": "string",
+        "subject": "string",
+        "body": "string"
     }
 
 }
@@ -79,7 +79,7 @@
 
 ```
 {
-    translated_words: [
+    "translated_words": [
         "string",
         "string",
         ...
