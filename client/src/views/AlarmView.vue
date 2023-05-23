@@ -6,7 +6,7 @@
 
       <div class="mail-box m-3 rounded-2xl flex">
             
-        <AllMail :serverData="serverData" :selectedMail="selectedMail" :mails="mails" @update:selectedMail="updateSelectedMail">
+        <AllMail>
           通知</AllMail>    
         
         <!-- <MailDetail :mail="selectedMail" /> -->
@@ -25,16 +25,8 @@
 
 import { ref } from 'vue';
 import SideMenu from '@/components/SideMenu.vue';
-//import SettingInformation from '@/components/SettingInformation.vue';
 import AllMail from '@/components/AllMail.vue';
-//import NormalView from '@/components/NormalView.vue';
-//import WriteView from '@/components/WriteView.vue';
-//import MailDetail from '@/components/MailDetail.vue';
-//import Share from "vue-material-design-icons/ShareOutline.vue";
-//import ReplyAll from "vue-material-design-icons/ReplyAllOutline.vue";
-//import Reply from "vue-material-design-icons/ReplyOutline.vue";
-//import Information from "vue-material-design-icons/InformationOutline.vue";
-import Allmail from './Allmail.vue';
+
 
 
 
