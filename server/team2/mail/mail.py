@@ -1,6 +1,6 @@
 import json
 from .models import Mail
-import gmailApi
+from . import gmailApi
 from django.db import IntegrityError
 
 # 結局使わない
@@ -32,7 +32,7 @@ class OriginalMail:
         mail_dict["mail"]["to"] = self.to
         mail_dict["mail"]["from"] = self.fr
         mail_dict["mail"]["body"] = self.body
-        json_data = json.dumps(mail_dict)
+        json_data = json.dumps(mail_dict, ensure_ascii=False)
         return json_data        
 
 
@@ -109,5 +109,5 @@ def get_mails(json_auth):
         add_expiry(message)
     mails_dict = {}
     mails_dict["mails"] = messages
-    json_data = json.dumps(mails_dict)
+    json_data = json.dumps(mails_dict, ensure_ascii=False)
     return json_data

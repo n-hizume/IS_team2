@@ -1,20 +1,6 @@
-from django.shortcuts import render
-
 # Create your views here.
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
-from django.views.generic import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
-from django.shortcuts import render, redirect
-
-# Create your views here.
-from django.db import IntegrityError
 from django.http import HttpResponse
 
-import json
-from django.http.response import JsonResponse
-from django.views.decorators.csrf import ensure_csrf_cookie
 
 from .mail import get_mails
 from .mail import send_mail
@@ -46,7 +32,7 @@ def getmailfunc(request):
         
         json_str = request.body
         response = get_mails(json_str)
-        return response 
+        return HttpResponse(response)
         """try:
             user = User.objects.
         except IntegrityError:
@@ -58,8 +44,8 @@ def sendmailfunc(request):
     if request.method == 'POST':
         
         json_str = request.body
-        response = send_mails(json_str)
-        return response 
+        response = send_mail(json_str)
+        return HttpResponse(response) 
         """try:
             user = User.objects.
         except IntegrityError:

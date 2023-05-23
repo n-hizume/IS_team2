@@ -1,5 +1,5 @@
 import json
-import chatGptApi
+from . import chatGptApi
 
 def translate(json_data):
     pre_dict = json.loads(json_data)
@@ -8,5 +8,5 @@ def translate(json_data):
     keigo_str_list = manager.translate(pre_str)
     keigo_dict = {}
     keigo_dict["translated_words"] = keigo_str_list
-    json_keigo = json.dumps(keigo_dict)
+    json_keigo = json.dumps(keigo_dict, ensure_ascii=False)
     return json_keigo
