@@ -39,7 +39,7 @@
 //import NormalView from '@/components/NormalView.vue';
 
 // import IconComponent from "@/components/IconComponent.vue";
-// import UserComponent from "@/components/UserComponent.vue"
+
 
 //import Menu from "vue-material-design-icons/MenuOutline.vue";
 import Share from "vue-material-design-icons/ShareOutline.vue";
