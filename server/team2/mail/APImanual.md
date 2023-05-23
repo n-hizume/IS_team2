@@ -72,6 +72,7 @@
 ```
 {
     "word": "string"
+    "level": int(0 or 1 or 2)
 }
 ```
 
