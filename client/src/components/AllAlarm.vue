@@ -18,9 +18,18 @@
                   </div>  
                   <div class="ml-5">
                     
-                    <p style="font-size:10px">{{ mail.expiry }}</p>
-                  
-                    <p style="font-size:10px">{{ mail.date }}</p>
+                 
+                    <div style="color: crimson;" class="flex">
+                        <ClockOutlineIcon :size="14" />
+                        <div class="ml-1.5">
+                            <p style="font-size:10px">{{ mail.expiry }}</p>
+                        </div>    
+                    </div>
+                
+
+                    <div class="ml-5 mr-1">
+                        <p style="font-size:10px">{{ mail.date }}</p>
+                    </div>    
                       
                   </div>
                 </div>  
@@ -35,6 +44,9 @@
 </template>
 
 <script setup>
+
+import ClockOutlineIcon from "vue-material-design-icons/ClockOutline.vue";
+
 
 import { useRouter } from "vue-router";
 import store from '@/store/index';
