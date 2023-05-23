@@ -80,17 +80,10 @@ const movewriteScreen = () => {
   router.push('/write')
 };
 
-// import { defineProps } from 'vue';
+const mailId = store.state.focus_mail_id;
+console.log(mailId)
 
-// defineProps({
-//   mail: {
-//     type: Object,
-//     required: true
-//   }
-// });
-
-// const mail = $router.params.mail;
-const mail = store.state.focus_mail;
+const mail = store.state.mails.filter(mail => mail.id === mailId)[0];
 
 </script>
 
