@@ -1,9 +1,9 @@
 import json
-import datetime
 from .models import Mail
 import gmailApi
 from django.db import IntegrityError
 
+# 結局使わない
 class OriginalMail:
     def __init__(self, title, to, fr, body, date) -> None:
         self.title = title
@@ -12,7 +12,6 @@ class OriginalMail:
         self.body = body
         self.date = date
 
-    # メール送信用
     @classmethod
     def json2original(cls, json_data):
         d = json.loads(json_data)
@@ -25,7 +24,6 @@ class OriginalMail:
         original = cls(title, date, fr, to, body)
         return original
     
-    # もう使わないかも
     def original2json(self):
         mail_dict = {}
         mail_dict["mail"] = {}
@@ -85,8 +83,19 @@ def add_expiry(mail_dict):
 # TODO
 # メール送信
 def send_mail(json_data):
-    original = OriginalMail.json2original(json_data)
-    body = original.body
+    send_dict = json.loads(json_data)
+    access_token = send_dict["auth"]["token"]
+    refresh_token = send_dict["auth"]["refresh_token"]
+    expiry_date = send_dict["auth"]["expiry"]
+    to = send_dict["mail"]["to"]
+    subject = send_dict["mail"]["subject"]
+    body = send_dict["mail"]["body"]
+    manager = gmailApi.GmailApiManager()
+    try:
+        res = manager.send_mail(access_token, refresh_token, expiry_date, to, subject, body)
+    except:
+        res = {}
+    return res
 
 # メール受信
 def get_mails(json_auth):
