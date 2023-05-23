@@ -31,7 +31,8 @@
     </div>
 
     <div class="w-full text-xl ml-20 font-light pt-5">
-      {{ email.subject }}
+      <!-- {{ email.subject }} -->
+      これはテストです
     </div>
 
     <div class="w-full flex">
@@ -42,12 +43,15 @@
       <div class="w-full my-4 mx-0.5">
         <div class="font-semibold text-sm mt-4 mb-4">
           <div class="w-full flex justify-between items-center">
-            <div>{{ email.fromEmail }}</div>
-            <div class="mr-5 text-xs font-normal">{{ email.createdAt }}</div>
+            <!-- <div>{{ email.fromEmail }}</div> -->
+            hirayamasaki@kuhp-kyoto-u.ac.jp
+            <!-- <div class="mr-5 text-xs font-normal">{{ email.createdAt }}</div> -->
+            <div class="mr-5 text-xs font-normal">2022/2/22</div>
           </div>
           <span class="text-xs text-gray-500 font-normal">to me</span>
         </div>
-        <div>{{ email.body }}</div>
+        <!-- <div>{{ email.body }}</div> -->
+        <div>あいうえおかきくけこ</div>
       </div>
     </div>
   </div>
