@@ -56,7 +56,7 @@ const router = useRouter()
 
 const selectMail = (mail) => {
   store.commit('setFocusMail', mail);
-  router.push('/alarm/maildetail')
+  router.push('/alarm/maildetail');
 };
 
 
