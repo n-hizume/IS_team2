@@ -3,13 +3,13 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from apiclient import errors
 from email.mime.text import MIMEText
+from .creds.app import APP_CONFIG
 import base64
 import json
 
 class GmailApiManager:
     def __init__(self):
-        with open("creds/app_credentials.json") as f:
-            info = json.load(f)
+        info = APP_CONFIG
         self.CLIENT_ID = info["web"]["client_id"]
         self.CLIENT_SECRET = info["web"]["client_secret"]
 
@@ -40,7 +40,8 @@ class GmailApiManager:
             body.append(base64.urlsafe_b64decode(detail["payload"]["body"]["data"]).decode("UTF-8"))
         else:
             for part in detail["payload"]["parts"]:
-                 body.append( base64.urlsafe_b64decode(part["body"]["data"]).decode("UTF-8") )
+                if 'data' in part["body"]:
+                    body.append( base64.urlsafe_b64decode(part["body"]["data"]).decode("UTF-8") )
 
         return {
             "id": detail["id"],
@@ -82,7 +83,6 @@ class GmailApiManager:
                     .execute()
                 )
                 
-                print(detail)
                 message = self.parse_mail_detail(detail)
                 # print(detail)
                 messages.append(message)
@@ -131,10 +131,10 @@ def get_sample_user_info():
 if __name__ == '__main__':
     user_info = get_sample_user_info()
     manager = GmailApiManager()
-    messages = manager.get_message_list(user_info["access_token"], user_info["refresh_token"], user_info["expiry_date"])
-    if messages:
-        for message in messages:
-            print(message["subject"])
+    # messages = manager.get_message_list(user_info["access_token"], user_info["refresh_token"], user_info["expiry_date"])
+    # if messages:
+    #     for message in messages:
+    #         print(message["subject"])
     
-    # res = manager.send_mail(user_info["access_token"], user_info["refresh_token"], user_info["expiry_date"], "hizumee228@gmail.com", "APIテスト", "こんにちは。\nこれはテストです。")
-    # print(res)
+    res = manager.send_mail(user_info["access_token"], user_info["refresh_token"], user_info["expiry_date"], "hizumee228@gmail.com", "APIテスト", "こんにちは。\nこれはテストです。")
+    print(res)

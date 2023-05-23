@@ -2,13 +2,16 @@ import openai
 import json
 import re
 
+from .creds.cred import API_KEY
+
 
 class chatGptManager:
     def __init__(self):
-        with open("creds/gpt_credentials.json") as f:
-            info = json.load(f)
+        # with open("creds/gpt_credentials.json") as f:
+        #     info = json.load(f)
 
-        openai.api_key = info["api_key"]
+        # openai.api_key = info["api_key"]
+        openai.api_key = API_KEY
 
     def create_query(self, content, level=0):
         if level == 0:
