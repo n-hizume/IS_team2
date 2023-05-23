@@ -39,7 +39,7 @@ const serverData = {
             "from": "Naoki Hizume <ku.is.team2@gmail.com>", //送信者
             "to": "hizumee228@gmail.com", //受信者(=自分)
             "date": "2023-05-17", //メールの受信日時
-            "expiry": "2023-05-20:00:00:00" //我々のアプリで設定されたメールの締め切り日時(設定していなければnull)
+            "expiry": "" //我々のアプリで設定されたメールの締め切り日時(設定していなければnull)
         },
         {   
             "id":"opqrstu",
@@ -50,7 +50,62 @@ const serverData = {
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
             "date": "2023-05-16",
-            "expiry": "2023-05-25:00:00:00"
+            "expiry": ""
+        },
+        {   
+            "id":"aaaaaaa",
+            "threadId": "vwxyz",
+            "snipet": "これはテストです(Ver2)。 isteam2のアカウントから hizumee228のアカウントにメールを送ります。",
+            "body": "これはテストです(Ver2)。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。\r\n",
+            "subject": "test ver 2",
+            "from": "Naoki Hizume <ku.is.team2@gmail.com>",
+            "to": "hizumee228@gmail.com",
+            "date": "2023-05-16",
+            "expiry": ""
+        },
+        {   
+            "id":"aaaaaaa",
+            "threadId": "vwxyz",
+            "snipet": "これはテストです(Ver2)。 isteam2のアカウントから hizumee228のアカウントにメールを送ります。",
+            "body": "これはテストです(Ver2)。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。\r\n",
+            "subject": "test ver 2",
+            "from": "Naoki Hizume <ku.is.team2@gmail.com>",
+            "to": "hizumee228@gmail.com",
+            "date": "2023-05-16",
+            "expiry": ""
+        },
+        {   
+            "id":"aaaaaaa",
+            "threadId": "vwxyz",
+            "snipet": "これはテストです(Ver2)。 isteam2のアカウントから hizumee228のアカウントにメールを送ります。",
+            "body": "これはテストです(Ver2)。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。\r\n",
+            "subject": "test ver 2",
+            "from": "Naoki Hizume <ku.is.team2@gmail.com>",
+            "to": "hizumee228@gmail.com",
+            "date": "2023-05-16",
+            "expiry": ""
+        },
+        {   
+            "id":"aaaaaaa",
+            "threadId": "vwxyz",
+            "snipet": "これはテストです(Ver2)。 isteam2のアカウントから hizumee228のアカウントにメールを送ります。",
+            "body": "これはテストです(Ver2)。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。\r\n",
+            "subject": "test ver 2",
+            "from": "Naoki Hizume <ku.is.team2@gmail.com>",
+            "to": "hizumee228@gmail.com",
+            "date": "2023-05-16",
+            "expiry": ""
+        },
+        {   
+            "id":"aaaaaaa",
+            "threadId": "vwxyz",
+            "snipet": "これはテストです(Ver2)。 isteam2のアカウントから hizumee228のアカウントにメールを送ります。",
+            "body": "これはテストです(Ver2)。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。\r\n",
+            "subject": "test ver 2",
+            "from": "Naoki Hizume <ku.is.team2@gmail.com>",
+            "to": "hizumee228@gmail.com",
+            "date": "2023-05-16",
+            "expiry": ""
         },
         {   
             "id":"aaaaaaa",
@@ -105,62 +160,7 @@ const serverData = {
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
             "date": "2023-05-16",
-            "expiry": "2023-05-25:00:00:00"
-        },
-        {   
-            "id":"aaaaaaa",
-            "threadId": "vwxyz",
-            "snipet": "これはテストです(Ver2)。 isteam2のアカウントから hizumee228のアカウントにメールを送ります。",
-            "body": "これはテストです(Ver2)。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。\r\n",
-            "subject": "test ver 2",
-            "from": "Naoki Hizume <ku.is.team2@gmail.com>",
-            "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-25:00:00:00"
-        },
-        {   
-            "id":"aaaaaaa",
-            "threadId": "vwxyz",
-            "snipet": "これはテストです(Ver2)。 isteam2のアカウントから hizumee228のアカウントにメールを送ります。",
-            "body": "これはテストです(Ver2)。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。\r\n",
-            "subject": "test ver 2",
-            "from": "Naoki Hizume <ku.is.team2@gmail.com>",
-            "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-25:00:00:00"
-        },
-        {   
-            "id":"aaaaaaa",
-            "threadId": "vwxyz",
-            "snipet": "これはテストです(Ver2)。 isteam2のアカウントから hizumee228のアカウントにメールを送ります。",
-            "body": "これはテストです(Ver2)。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。\r\n",
-            "subject": "test ver 2",
-            "from": "Naoki Hizume <ku.is.team2@gmail.com>",
-            "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-25:00:00:00"
-        },
-        {   
-            "id":"aaaaaaa",
-            "threadId": "vwxyz",
-            "snipet": "これはテストです(Ver2)。 isteam2のアカウントから hizumee228のアカウントにメールを送ります。",
-            "body": "これはテストです(Ver2)。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。\r\n",
-            "subject": "test ver 2",
-            "from": "Naoki Hizume <ku.is.team2@gmail.com>",
-            "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-25:00:00:00"
-        },
-        {   
-            "id":"aaaaaaa",
-            "threadId": "vwxyz",
-            "snipet": "これはテストです(Ver2)。 isteam2のアカウントから hizumee228のアカウントにメールを送ります。",
-            "body": "これはテストです(Ver2)。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。\r\n",
-            "subject": "test ver 2",
-            "from": "Naoki Hizume <ku.is.team2@gmail.com>",
-            "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-25:00:00:00"
+            "expiry": ""
         },
         
     ]
