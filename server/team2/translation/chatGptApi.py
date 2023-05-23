@@ -31,7 +31,7 @@ class chatGptManager:
             result = result.replace(replace, "")
         return result
 
-    def translate(self, content):
+    def translate(self, content, level=0):
         structure = "・「ans1」\n・「ans2」\n..."
 
         res = openai.ChatCompletion.create(
@@ -39,7 +39,7 @@ class chatGptManager:
             messages=[
                 {
                     "role": "user",
-                    "content": self.create_query(content, level=0) 
+                    "content": self.create_query(content, level=level) 
                                 + "\n回答は以下の形式に従ってください\n" 
                                 + structure,
                 },
