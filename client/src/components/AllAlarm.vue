@@ -54,9 +54,8 @@ import store from '@/store/index';
 
 const router = useRouter()
 
-const selectMail = (mail) => {
-  store.commit('setFocusMail', mail);
-  router.push('/alarm/maildetail');
+var selectMail = (mail) => {
+  router.push({ name: "maildetailforalarm", query: { id: mail.id }});
 };
 
 
