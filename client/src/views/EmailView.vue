@@ -148,8 +148,8 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-25:00:00:00"
+            "date": "2023-05-10",
+            "expiry": "2023-05-24:00:00:00"
         },
         {   
             "id":"aaaaaaa",
