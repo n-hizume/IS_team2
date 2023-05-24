@@ -108,6 +108,18 @@ for(const mail of store.state.mails){
   
 }
 
+const sortedmails = mailDatas.sort((a, b) => {
+  if (a.expiry === "今日" && b.expiry !== "今日") {
+    return -1; 
+  } else if (a.expiry !== "今日" && b.expiry === "今日") {
+    return 1; 
+  } else {
+    return 0; 
+  }
+});
+
+console.log(sortedmails);
+
 </script>
 
 
