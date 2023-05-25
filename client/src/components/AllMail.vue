@@ -85,11 +85,7 @@ function formatDate(date) {
 
 const mailDatas = [];
 
-// const today = mailDatas
-//   .filter(data => data.expiry >= "今日")
-//   .map(data => data.name);
 
-// console.log(today);
 
 for(const mail of store.state.mails){
   
@@ -114,6 +110,18 @@ for(const mail of store.state.mails){
   });
   
 }
+
+const sortedmails = mailDatas.sort((a, b) => {
+  if (a.expiry === "今日" && b.expiry !== "今日") {
+    return -1; 
+  } else if (a.expiry !== "今日" && b.expiry === "今日") {
+    return 1; 
+  } else {
+    return 0; 
+  }
+});
+
+console.log(sortedmails);
 
 
 </script>
