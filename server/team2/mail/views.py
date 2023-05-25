@@ -4,6 +4,7 @@ from django.http import HttpResponse
 
 from .mail import get_mails
 from .mail import send_mail
+from .mail import get_token
 
 '''def initialfunc(request):
     #return HttpResponse("Initial")
@@ -33,10 +34,7 @@ def getmailfunc(request):
         json_str = request.body
         response = get_mails(json_str)
         return HttpResponse(response)
-        """try:
-            user = User.objects.
-        except IntegrityError:
-            return render(request, '.html', {'error':''})"""
+
     else: 
         return HttpResponse('post only')
     
@@ -46,16 +44,19 @@ def sendmailfunc(request):
         json_str = request.body
         response = send_mail(json_str)
         return HttpResponse(response) 
-        """try:
-            user = User.objects.
-        except IntegrityError:
-            return render(request, '.html', {'error':''})"""
+
     else: 
         return HttpResponse('POST ONLY')
+    
+def gettokenfunc(request):
+    if request.method == 'POST':
+        
+        json_str = request.body
+        response = get_token(json_str)
+        return HttpResponse(response) 
 
-
-
-
+    else: 
+        return HttpResponse('POST ONLY')
 
 
 '''

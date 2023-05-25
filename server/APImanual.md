@@ -1,3 +1,22 @@
+# [POST] /mail/auth/
+
+## request
+```
+{
+    "code": "string",
+    "redirect_url": "string"
+}
+```
+
+## response
+```
+{
+    "access_token": "*****",
+    "refresh_token": "***",
+    "expiry": int
+}
+```
+
 # [POST] /mail/getall
 
 ## request (client -> server)
@@ -12,8 +31,6 @@
 
 }
 ```
-
-
 
 ## response (server -> client)
 ```

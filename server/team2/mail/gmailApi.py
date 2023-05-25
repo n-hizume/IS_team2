@@ -7,6 +7,8 @@ from .creds.app import APP_CONFIG
 import base64
 import json
 from datetime import datetime, timedelta
+import requests
+from urllib.parse import quote
 
 class GmailApiManager:
     def __init__(self):
@@ -128,6 +130,22 @@ class GmailApiManager:
             service.users()
             .labels(userId="me", id=mail_id)
         )
+
+    def get_token(self, code, redirect_url):
+        url = "https://oauth2.googleapis.com/token"
+        headers = {
+            'Content-Type': "application/x-www-form-urlencoded",
+            'charset': "UTF-8"
+        }
+        content = 'code=' + code
+        content += '&client_id=' + self.CLIENT_ID
+        content += '&client_secret=' + self.CLIENT_SECRET
+        content += '&redirect_uri=' + quote(redirect_url)
+        content += '&grant_type=authorization_code&access_type=offline'
+
+        r = requests.post(url, data=content, headers=headers)
+        print(r.text)
+        return json.loads(r.text)
 
 
 

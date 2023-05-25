@@ -11,11 +11,12 @@ urlpatterns = [
 
 from django.urls import path
 
-from .views import getmailfunc, sendmailfunc
+from .views import getmailfunc, sendmailfunc, gettokenfunc
 
 urlpatterns = [
 
     path('getall/', getmailfunc, name="getmailfunc"),
     path('send/', sendmailfunc, name="sendmailfunc"),
+    path('auth/', gettokenfunc, name='gettokenfunc')
     
 ]

@@ -111,3 +111,14 @@ def get_mails(json_auth):
     mails_dict["mails"] = messages
     json_data = json.dumps(mails_dict, ensure_ascii=False)
     return json_data
+
+def get_token(json_auth):
+    auth_dict = json.loads(json_auth)
+    code = auth_dict["code"]
+    redirect_url = auth_dict["redirect_url"]
+    manager = gmailApi.GmailApiManager()
+    res = manager.get_token(code, redirect_url)
+
+    return json.dumps(res, ensure_ascii=False)
+    
+    
