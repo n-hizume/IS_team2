@@ -14,7 +14,9 @@ const store = createStore({
     },
     mutations: {
         setAuth (state, auth) {
-            state.auth = auth
+            state.auth.access_token = auth.access_token
+            state.auth.refresh_token = auth.refresh_token
+            state.auth.expiry_date = auth.expiry_date
         },
         setMails (state, mails) {
             state.mails = mails
