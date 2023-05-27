@@ -64,9 +64,31 @@ const alarmDate = ref("");
 const alarmTime = ref("");
 
 const saveAlarm = () => {
-  console.log("保存されたアラーム日付:", alarmDate.value);
-  console.log("保存されたアラーム時刻:", alarmTime.value);
+  const dateParts = alarmDate.value.split("-");
+  const year = parseInt(dateParts[0]);
+  const month = parseInt(dateParts[1]) - 1;
+  const day = parseInt(dateParts[2]);
+  const date = new Date(year, month, day);
+
+  const timeParts = alarmTime.value.split(":");
+  const hours = parseInt(timeParts[0]);
+  const minutes = parseInt(timeParts[1]);
+
+  const time = new Date();
+  time.setFullYear(date.getFullYear());
+  time.setMonth(date.getMonth());
+  time.setDate(date.getDate());
+  time.setHours(hours);
+  time.setMinutes(minutes);
+  time.setSeconds(0);
+
+  const timezoneOffset = time.getTimezoneOffset() * 60000;
+  const localTime = new Date(time.getTime() - timezoneOffset);
+  const isoDateTime = localTime.toISOString().replace(/\:\d+\.\d+Z$/, "+09:00");
+
+  console.log(isoDateTime);
 }
+
 
 </script>
 
