@@ -14,25 +14,10 @@
 
 <script setup>
 import { googleSdkLoaded } from "vue3-google-login";
-import axios from 'axios'
+import { getToken } from '@/apis/mail'
 import { useRouter } from "vue-router";
-import store from '@/store/index';
 
 const router = useRouter();
-
-const getToken = async (code) => {
-    axios.post('http://kuisteam2.pythonanywhere.com/mail/auth/', {
-        "code": code,
-        "redirect_url": "http://localhost:8082"
-    }).then((res) => {
-        store.commit('setAuth', {
-            access_token: res.data.access_token,
-            refresh_token: res.data.refresh_token,
-            expiry_date: res.data.expires_in,
-        })
-    })
-
-}
 
 const login = () => {
     googleSdkLoaded((google) => {
