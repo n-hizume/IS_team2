@@ -1,38 +1,42 @@
 <template>
   <div class="allmail" >
-    <div class="mt-3 ml-4 mr-2 text-start pl-4 font-bold text-primary-600">
+    <div class="mt-3 mb-1 ml-4 mr-2 text-start pl-4 font-bold text-primary-600">
       <p><slot></slot></p>
     </div>  
-    <div class="mailbox mt-1" style="overflow-y: auto;">
-      <div class="mt-1.5 ml-6">
-        <button
+    <div class="mailbox" style="overflow-y:scroll;">
+      <div class=" ml-6">
+        <button 
           v-for="mail in mailDatas"
           :key="mail.id"
-          style="text-align: left;"
-          class="mail my-0.5 rounded-2xl cursor-pointer px-4"
+          style="text-align: left; overflow:hidden;"
+          class="mail my-0.5 rounded-2xl cursor-pointer px-4 py-0.5"
           @click="selectMail(mail)"
         >
-          <div class="flex items-center mb-1">
-            <div class="mr-1">
+          <div class="flex items-center justify-between mb-1">
+            <div class="mr-1 text-zinc-800">
               <p style="font-size:15px">{{ mail.from }}</p>
             </div>  
-            <div class="ml-5">
+            <div class="expiry-date ml-5">
               
               <div v-bind:class="{'notexist': mail.expiry==''}" style="color: crimson;" class="flex expiry">
-                  <ClockOutlineIcon :size="14" />
-                  <div class="ml-1.5">
-                    <p style="font-size:10px">{{ mail.expiry }}</p>
-                  </div>    
-                </div>
-                <div class="ml-5 mr-1">
-                  <p style="font-size:10px">{{ mail.date }}</p>
-                </div>
+                <ClockOutlineIcon :size="14" />
+                <div class="ml-1.5">
+                  <p style="font-size:10px">{{ mail.expiry }}</p>
+                </div>    
+              </div>
+              <div class="ml-5 mr-1 text-zinc-700">
+                <p style="font-size:10px">{{ mail.date }}</p>
+              </div>
                 
             </div>
           </div>  
           <div  style="font-size:14px" class="ml-2">
-            <p>{{ mail.subject }}</p>
-            <p>{{ mail.snipet }}</p>
+            <div class="subject text-zinc-700" style="overflow: hidden;">
+              <p>{{ mail.subject }}</p>
+            </div>  
+            <div class="snipet text-zinc-700" style="overflow:hidden">
+              <p>{{ mail.snipet }}</p>
+            </div>  
           </div>  
         </button>
       </div>
@@ -102,9 +106,9 @@ for(const mail of store.state.mails){
     "threadId": mail.threadId, //メールのスレッドID
     "snipet": mail.snipet, //メールのスニペット(本文の書式なしデータのようなもの)
     "body": mail.body, //本文(書式や改行なども含む)
-    "subject": "test: from isteam2 to hizumee228", //メールのタイトル
-    "from": "Naoki Hizume <ku.is.team2@gmail.com>", //送信者
-    "to": "hizumee228@gmail.com", //受信者(=自分)
+    "subject": mail.subject, //メールのタイトル
+    "from": mail.from, //送信者
+    "to": mail.to, //受信者(=自分)
     "date": formatDate(date),
     "expiry": formatDate(expiry)
   });
@@ -154,11 +158,17 @@ console.log(sortedmails);
     background: #F4F4F3;
   }
 
+  .subject{
+    height:20px;
+  }
 
+  .snipet{
+    height:40px;
+  }
 
   .expiry.notexist {
     display: none !important;
   }
 
-
+ 
 </style>
