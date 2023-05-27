@@ -40,8 +40,8 @@ const serverData = {
             "subject": "test: from isteam2 to hizumee228", //メールのタイトル
             "from": "Saki Hirayama <saki@kyoto-u.ac.jp>", //送信者
             "to": "hizumee228@gmail.com", //受信者(=自分)
-            "date": "2023-05-17", //メールの受信日時
-            "expiry": "2023-05-27:00:00:00" //我々のアプリで設定されたメールの締め切り日時(設定していなければnull)
+            "date": "2023-05-17T00:00+09:00", //メールの受信日時
+            "expiry": "2023-05-17T00:00+09:00" //我々のアプリで設定されたメールの締め切り日時(設定していなければnull)
         },
         {   
             "id":"opqrstu",
@@ -51,7 +51,7 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
+            "date": "2023-05-16T00:00+09:00",
             "expiry": ""
         },
         {   
@@ -62,7 +62,7 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
+            "date": "2023-05-16T00:00+09:00",
             "expiry": ""
         },
         {   
@@ -73,7 +73,7 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
+            "date": "2023-05-16T00:00+09:00",
             "expiry": ""
         },
         {   
@@ -84,8 +84,8 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-27:00:00:00"
+            "date": "2023-05-16T00:00+09:00",
+            "expiry": "2023-05-27T00:00+09:00"
         },
         {   
             "id":"aaaaaaa",
@@ -95,7 +95,7 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
+            "date": "2023-05-16T00:00+09:00",
             "expiry": ""
         },
         {   
@@ -106,7 +106,7 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
+            "date": "2023-05-16T00:00+09:00",
             "expiry": ""
         },
         {   
@@ -117,8 +117,8 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-23:00:00:00"
+            "date": "2023-05-16T00:00+09:00",
+            "expiry": "2023-05-23T00:00+09:00"
         },
         {   
             "id":"aaaaaaa",
@@ -128,8 +128,8 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-25:00:00:00"
+            "date": "2023-05-16T00:00+09:00",
+            "expiry": "2023-05-25T00:00+09:00"
         },
         {   
             "id":"aaaaaaa",
@@ -139,8 +139,8 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
-            "expiry": "2023-05-25:00:00:00"
+            "date": "2023-05-16T00:00+09:00",
+            "expiry": "2023-05-25T00:00+09:00"
         },
         {   
             "id":"aiuhgrk",
@@ -150,8 +150,8 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-10",
-            "expiry": "2023-05-24:00:00:00"
+            "date": "2023-05-10T00:00+09:00",
+            "expiry": "2023-05-24T00:00+09:00"
         },
         {   
             "id":"adjhgek",
@@ -161,7 +161,7 @@ const serverData = {
             "subject": "test ver 2",
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
-            "date": "2023-05-16",
+            "date": "2023-05-16T00:00+09:00",
             "expiry": ""
         },
         
