@@ -4,9 +4,9 @@ const store = createStore({
     state () {
         return {
             auth: {
-                access_token: null,
+                token: null,
                 refresh_token: null,
-                expiry_date: null,
+                expiry: null,
             },
             mails: [],
             focus_mail_id: null
@@ -14,9 +14,9 @@ const store = createStore({
     },
     mutations: {
         setAuth (state, auth) {
-            state.auth.access_token = auth.access_token
+            state.auth.token = auth.access_token
             state.auth.refresh_token = auth.refresh_token
-            state.auth.expiry_date = auth.expiry_date
+            state.auth.expiry = auth.expiry_date
         },
         setMails (state, mails) {
             state.mails = mails
