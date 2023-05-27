@@ -28,7 +28,7 @@
 import SideMenu from '@/components/SideMenu.vue';
 import AllMail from '@/components/AllMail.vue';
 //import WriteView from '@/components/WriteView.vue';
-import store from '@/store/index.js';
+import store from '@/store/index';
 
 const serverData = { 
     "mails":[
