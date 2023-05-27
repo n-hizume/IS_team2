@@ -6,9 +6,7 @@
 
       <div class="mail-box m-3 rounded-2xl flex">
             
-        <AllMail>
-          受信箱
-        </AllMail>    
+        <AllMail :isAlarm="false"/>
         
         <!-- <MailDetail :mail="selectedMail" /> -->
 

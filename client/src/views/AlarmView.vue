@@ -7,7 +7,7 @@
       <div class="mail-box m-3 rounded-2xl flex">
             
          
-        <AllAlarm/>
+        <AllMail :isAlarm="true"/>
         <!-- <MailDetail :mail="selectedMail" /> -->
 
         <router-view></router-view>
@@ -24,7 +24,8 @@
 
 
 import SideMenu from '@/components/SideMenu.vue';
-import AllAlarm from '@/components/AllAlarm.vue';
+import AllMail from '@/components/AllMail.vue';
+
 
 </script>
 

@@ -1,11 +1,11 @@
 <template>
   <div class="allmail" >
     <div class="mt-3 mb-1 ml-4 mr-2 text-start pl-4 font-bold text-primary-600">
-      <p><slot></slot></p>
+      <p>{{ isAlarm?"通知":"受信箱" }}</p>
     </div>  
     <div class="mailbox" style="overflow-y:scroll;">
-      <div class=" ml-6">
-        <button 
+      <div class="ml-6">
+        <button
           v-for="mail in mailDatas"
           :key="mail.id"
           style="text-align: left; overflow:hidden;"
@@ -16,13 +16,13 @@
             <div class="mr-1 text-zinc-800">
               <p style="font-size:15px">{{ mail.from }}</p>
             </div>  
-            <div class="expiry-date ml-5">
+            <div class="ml-5">
               
               <div v-bind:class="{'notexist': mail.expiry==''}" style="color: crimson;" class="flex expiry">
                 <ClockOutlineIcon :size="14" />
                 <div class="ml-1.5">
                   <p style="font-size:10px">{{ mail.expiry }}</p>
-                </div>    
+                </div>
               </div>
               <div class="ml-5 mr-1 text-zinc-700">
                 <p style="font-size:10px">{{ mail.date }}</p>
@@ -36,7 +36,7 @@
             </div>  
             <div class="snipet text-zinc-700" style="overflow:hidden">
               <p>{{ mail.snipet }}</p>
-            </div>  
+            </div>
           </div>  
         </button>
       </div>
@@ -47,18 +47,23 @@
 <script setup>
 
 import ClockOutlineIcon from "vue-material-design-icons/ClockOutline.vue";
-
-
 import { useRouter } from "vue-router";
-import { getAllMails } from '@/utils/index'
+import { getAllMails, getAllMailsForAlarm } from '@/utils/index'
+import { defineProps, toRefs } from 'vue'
 
 const router = useRouter()
+const props = defineProps({
+  isAlarm: Boolean
+});
+
+const isAlarm = toRefs(props).isAlarm.value;
 
 var selectMail = (mail) => {
-  router.push({ name: "maildetail", query: { id: mail.id }});
+  if(isAlarm) router.push({ name: "maildetailforalarm", query: { id: mail.id }});
+  else router.push({ name: "maildetail", query: { id: mail.id }});
 };
 
-const mailDatas = getAllMails();
+const mailDatas = isAlarm?getAllMailsForAlarm():getAllMails();
 
 selectMail(mailDatas[0]);
 
