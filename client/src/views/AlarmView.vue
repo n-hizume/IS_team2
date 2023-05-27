@@ -24,74 +24,10 @@
 
 
 import SideMenu from '@/components/SideMenu.vue';
-//import AllMail from '@/components/AllMail.vue';
 import AllAlarm from '@/components/AllAlarm.vue';
-//import { useRouter } from "vue-router";
-import store from '@/store/index';
-
-
-
-
-
-
-function formatDate(date) {
-  const today = new Date(); // 今日の日付を取得
-  const yesterday = new Date(today); // 今日の日付をコピーして昨日の日付を作成
-  yesterday.setDate(yesterday.getDate() - 1); // 昨日の日付に変更
-
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-
-  if (
-    date.getDate() === today.getDate() &&
-    date.getMonth() === today.getMonth() &&
-    date.getFullYear() === today.getFullYear()
-  ) {
-    return "今日";
-  } else if (
-    date.getDate() === yesterday.getDate() &&
-    date.getMonth() === yesterday.getMonth() &&
-    date.getFullYear() === yesterday.getFullYear()
-  ) {
-    return "昨日";
-  } else {
-    return month + "月" + day + "日";
-  }
-}
-
-const mailDatas = [];
-
-for(const mail of store.state.mails){
-  
-
-
-  
-  if (!mail.expiry){
-    continue;
-  }
-  var date = new Date(mail.date);
-  var expiry = new Date(mail.expiry);
-  
-
-mailDatas.push({
-  "id": mail.id, //メールのID
-  "threadId": mail.threadId, //メールのスレッドID
-  "snipet": mail.snipet, //メールのスニペット(本文の書式なしデータのようなもの)
-  "body": mail.body, //本文(書式や改行なども含む)
-  "subject": "test: from isteam2 to hizumee228", //メールのタイトル
-  "from": "Naoki Hizume <ku.is.team2@gmail.com>", //送信者
-  "to": "hizumee228@gmail.com", //受信者(=自分)
-  "date": formatDate(date),
-  "expiry": formatDate(expiry),
-});
-  
-}
-
-
 
 </script>
 
-,
 
 <style lang="scss">
 
