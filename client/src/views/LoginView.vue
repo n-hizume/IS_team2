@@ -41,7 +41,7 @@ const login = () => {
             scope: 'https://www.googleapis.com/auth/gmail.modify',
             callback: (response) => {
                 getToken(response.code);
-                router.push('email')
+                router.push({name:'email'})
             }
         }).requestCode()
 

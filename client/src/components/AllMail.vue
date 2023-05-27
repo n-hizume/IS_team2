@@ -127,6 +127,8 @@ const sortedmails = mailDatas.sort((a, b) => {
 
 console.log(sortedmails);
 
+selectMail(mailDatas[0])
+
 
 </script>
 

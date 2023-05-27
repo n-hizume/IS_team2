@@ -132,7 +132,7 @@ import Share from "vue-material-design-icons/ShareOutline.vue";
 import ReplyAll from "vue-material-design-icons/ReplyAllOutline.vue";
 import Reply from "vue-material-design-icons/ReplyOutline.vue";
 import SettingInformation from '@/components/SettingInformation.vue';
-import IconComponent from "@/components/IconComponent.vue";
+// import IconComponent from "@/components/IconComponent.vue";
 import Close from "vue-material-design-icons/Close.vue";
 import SendOutlineIcon from "vue-material-design-icons/SendOutline.vue";
 import { useRouter } from "vue-router";
