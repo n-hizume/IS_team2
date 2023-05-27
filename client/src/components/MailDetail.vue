@@ -84,7 +84,7 @@
           </div>  
         </div>
 
-        <textarea v-model="body" style="resize:none;" class=" textarea w-full 
+        <textarea v-model="replyBody" style="resize:none;" class=" textarea w-full 
               border-transparent 
               border-none 
               focus:ring-0 
@@ -137,22 +137,23 @@ import Close from "vue-material-design-icons/Close.vue";
 import SendOutlineIcon from "vue-material-design-icons/SendOutline.vue";
 import { useRouter } from "vue-router";
 import store from '@/store/index';
-import { watch } from 'vue';
+import { watch, ref } from 'vue';
 
 
 var router = useRouter();
 var mailId = router.currentRoute.value.query.id;
 var mail = store.getters.getMailById(mailId);
 
+const replyBody = ref("");
+
 watch(
   () => router.currentRoute.value.query.id,
   (newMailId) => {
     mailId = newMailId;
     mail = store.getters.getMailById(mailId);
+    replyBody.value = "";
   }
 );
-
-import { ref } from 'vue';
 
 
 const showReplyForm = ref(false);
