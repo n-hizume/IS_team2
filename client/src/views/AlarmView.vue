@@ -10,7 +10,6 @@
         <AllAlarm/>
         <!-- <MailDetail :mail="selectedMail" /> -->
 
-        
         <router-view></router-view>
 
       </div>

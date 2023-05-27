@@ -13,6 +13,7 @@
         <!-- <MailDetail :mail="selectedMail" /> -->
 
         <router-view></router-view>
+        <!-- <WriteView/> -->
 
       </div>
                 
@@ -26,6 +27,7 @@
 
 import SideMenu from '@/components/SideMenu.vue';
 import AllMail from '@/components/AllMail.vue';
+//import WriteView from '@/components/WriteView.vue';
 import store from '@/store/index.js';
 
 const serverData = { 
@@ -33,13 +35,13 @@ const serverData = {
         {   
             "id":"abcdefg", //メールのID
             "threadId": "hijklmn", //メールのスレッドID
-            "snipet": "これはテストです。 isteam2のアカウントから hizumee228のアカウントにメールを送ります。", //メールのスニペット(本文の書式なしデータのようなもの)
-            "body": "これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。\r\n", //本文(書式や改行なども含む)
+            "snipet": "これはテストです。 isteam2のアカウントから hizumee228のアカウントにメールを送ります。これはテストです。 isteam2のアカウントから hizumee228のアカウントにメールを送ります。これはテストです。 isteam2のアカウントから hizumee228のアカウントにメールを送ります。これはテストです。 isteam2のアカウントから hizumee228のアカウントにメールを送ります。これはテストです。 isteam2のアカウントから hizumee228のアカウントにメールを送ります。", //メールのスニペット(本文の書式なしデータのようなもの)
+            "body": "これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。これはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。\r\nこれはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。\r\nこれはテストです。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。\r\n", //本文(書式や改行なども含む)
             "subject": "test: from isteam2 to hizumee228", //メールのタイトル
-            "from": "Naoki Hizume <ku.is.team2@gmail.com>", //送信者
+            "from": "Saki Hirayama <saki@kyoto-u.ac.jp>", //送信者
             "to": "hizumee228@gmail.com", //受信者(=自分)
             "date": "2023-05-17", //メールの受信日時
-            "expiry": "" //我々のアプリで設定されたメールの締め切り日時(設定していなければnull)
+            "expiry": "2023-05-27:00:00:00" //我々のアプリで設定されたメールの締め切り日時(設定していなければnull)
         },
         {   
             "id":"opqrstu",
@@ -83,7 +85,7 @@ const serverData = {
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
             "date": "2023-05-16",
-            "expiry": ""
+            "expiry": "2023-05-27:00:00:00"
         },
         {   
             "id":"aaaaaaa",
@@ -116,7 +118,7 @@ const serverData = {
             "from": "Naoki Hizume <ku.is.team2@gmail.com>",
             "to": "hizumee228@gmail.com",
             "date": "2023-05-16",
-            "expiry": "2023-05-24:00:00:00"
+            "expiry": "2023-05-23:00:00:00"
         },
         {   
             "id":"aaaaaaa",
@@ -141,7 +143,7 @@ const serverData = {
             "expiry": "2023-05-25:00:00:00"
         },
         {   
-            "id":"aaaaaaa",
+            "id":"aiuhgrk",
             "threadId": "vwxyz",
             "snipet": "これはテストです(Ver2)。 isteam2のアカウントから hizumee228のアカウントにメールを送ります。",
             "body": "これはテストです(Ver2)。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。\r\n",
@@ -152,7 +154,7 @@ const serverData = {
             "expiry": "2023-05-24:00:00:00"
         },
         {   
-            "id":"aaaaaaa",
+            "id":"adjhgek",
             "threadId": "vwxyz",
             "snipet": "これはテストです(Ver2)。 isteam2のアカウントから hizumee228のアカウントにメールを送ります。",
             "body": "これはテストです(Ver2)。\r\n\r\nisteam2のアカウントから\r\nhizumee228のアカウントにメールを送ります。\r\n",

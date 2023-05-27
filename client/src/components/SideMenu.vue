@@ -7,6 +7,7 @@
               items-center
               justify-center
               bg-primary-100 w-52 
+              text-primary-600
               
               h-20
               mt-10
@@ -16,7 +17,7 @@
               cursor-pointer
             ">
             <PencilOutlineIcon :size="27" class="mr-2" />
-            <span class="text-sm font-bold text-primary-600">メール作成</span>
+            <span class="text-sm font-bold ">メール作成</span>
           </div>
 
           <router-link to="/email">
@@ -33,9 +34,11 @@
               ">
 
 
-              <div class="flex items-center"> 
-                <InboxIcon :size="17" />
-                <div class="text-sm pl-4 font-bold text-primary-600 text-align-left">受信箱</div>
+              <div class="flex items-center text-primary-600"> 
+                <div class="mr-1">
+                  <InboxIcon :size="17" />
+                </div>  
+                <div class="text-sm pl-4 font-bold text-align-left">受信箱</div>
               </div>
             </div>
           </router-link>
@@ -54,36 +57,41 @@
               rounded-3xl
               cursor-pointer
             ">
-            <div class="flex items-center">
+            <div class="flex items-center text-primary-600">
              <FileOutlineIcon :size="17" />
-              <div class="text-sm pl-5 font-bold text-primary-600">下書き</div>
+              <div class="text-sm pl-5 font-bold">下書き</div>
             </div>
           </div>
 
-          <div @click="movesendScreen"
-            class="flex justify-center mt-2 ml-5 px-8 py-3  bg-primary-200 hover:bg-primary-500 w-52 h-21 mr-5 rounded-3xl cursor-pointer">
-            <div class="flex items-center">
-              <SendOutlineIcon :size="17" />
-              <div class="text-sm pl-4 font-bold text-primary-600">送信済み</div>
+          <div class="flex justify-center mt-2 ml-5 px-8 py-3  bg-primary-200 hover:bg-primary-500 w-52 h-21 mr-5 rounded-3xl cursor-pointer">
+            <div class="flex items-center text-primary-600">
+              <div class="ml-2">
+                <SendOutlineIcon :size="17" />
+              </div>  
+              <div class="text-sm pl-3 font-bold">送信済み</div>
             </div>
           </div>
 
           <div
             class="flex justify-center mt-2 ml-5 mr-5 px-8 py-3  bg-primary-200 hover:bg-primary-500 w-52 h-21 rounded-3xl cursor-pointer">
-            <div class="flex items-center">
-              <TrashCanOutline :size="17" />
-              <div class="text-sm pl-4 font-bold text-primary-600">ゴミ箱</div>
+            <div class="flex items-center text-primary-600">
+              <div class="mr-1">
+                <TrashCanOutline :size="17" />
+              </div>  
+              <div class="text-sm pl-4 font-bold">ゴミ箱</div>
             </div>
           </div>
 
           <div @click="movealarmScreen" 
             class="flex justify-center mt-2 ml-5 mr-5 px-8 py-3  bg-primary-200 hover:bg-primary-500 w-52 h-21 rounded-3xl cursor-pointer">
-            <div class="flex items-center">
-              <ClockOutlineIcon :size="17" />
-              <div class="text-sm pl-4 font-bold text-primary-600">通知</div>
+            <div class="flex items-center text-primary-600">
+              <div class="mr-3">
+                <ClockOutlineIcon :size="17" />
+              </div>  
+              <div class="text-sm pl-4 mr-1 font-bold">通知</div>
             </div>
           </div>
-          <div class="mt-96 ml-5">
+          <div class="mt-96 ml-5 text-zinc-600">
             <Cog :size="30" />
           </div>
         </div>
@@ -180,9 +188,9 @@ const movealarmScreen = () => {
   router.push('/alarm')
 };
 
-const movesendScreen = () => {
-  router.push('/send')
-};
+// const movesendScreen = () => {
+//   router.push('/send')
+// };
 
 
 </script>
