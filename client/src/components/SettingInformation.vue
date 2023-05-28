@@ -37,7 +37,7 @@
             </div>  
             <div class="mt-5 flex text-zinc-600 cursor-pointer">
                 <TrashCanOutline :size="18" class="mt-1" />
-                <button class="ml-0.5 hover:bg-primary-400 py-1 px-1 rounded-full">
+                <button class="hover:bg-primary-400 py-1 px-2 rounded-full">
                     <h3 class="text-sm font-semibold">メールを削除する</h3>
                 </button>    
             </div>

@@ -1,16 +1,16 @@
 <template>
     <div id="LoginView" class="grid h-screen place-items-center">
-        <div>
-            <div class="login-btn" @click="login">
-                <img width="279" src="img/GmailLogin.png" alt="">
-                <div class="flex justify-center">
-                    Googleログイン
-                </div>
+        <div class="container">
+            <div class="image-container">
+                <img class="login-image" src="img/GmailLogin.png" alt="">
             </div>
-            <!-- <a href="" @click="useGoogleAuth" >Google でログイン</a> -->
+            <div class="font-semibold text-primary-600 login-btn m-5 mx-auto" @click="login">
+                Google ログイン
+            </div>
         </div>
     </div>
 </template>
+
 
 <script setup>
 import { googleSdkLoaded } from "vue3-google-login";
@@ -40,16 +40,34 @@ const login = () => {
 </script>
 
 <style lang="scss">
+#LoginView {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    text-align: center;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+}
+
+.login-image {
+    width: 350px;
+}
 
 .login-btn {
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 1px 1px 10px 1px #888888;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0 0px 20px 0 rgba(0, 0, 0, .1);
+    width: 200px; 
 }
 
 .login-btn:hover {
     cursor: pointer;
-    box-shadow: 1px 1px 10px 1px #555555;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
 }
-
 </style>
