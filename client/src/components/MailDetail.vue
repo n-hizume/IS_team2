@@ -85,6 +85,15 @@
           </div>  
         </div>
 
+        <textarea v-model="replySubject" style="resize:none; height: 40px" class=" textarea w-full 
+              border-transparent 
+              border-none 
+              focus:ring-0 
+              outline-none
+              bg-primary-700
+              " rows="2" placeholder="Subject">
+        </textarea>
+
         <textarea v-model="replyBody" style="resize:none;" class=" textarea w-full 
               border-transparent 
               border-none 
@@ -92,7 +101,7 @@
               outline-none
               bg-primary-700
               
-              " rows="14">
+              " rows="14" placeholder="Message">
                 
         </textarea>
         
@@ -140,6 +149,8 @@ import { useRouter } from "vue-router";
 import store from '@/store/index';
 import { watch, ref } from 'vue';
 import { formatDate } from "@/utils";
+import { translateByGpt } from "@/apis/gpt";
+import { sendMail } from "@/apis/mail";
 
 
 var router = useRouter();
@@ -147,15 +158,32 @@ var mailId = router.currentRoute.value.query.id;
 var mail = store.getters.getMailById(mailId);
 
 const replyBody = ref("");
+const replySubject = ref("Re: " + mail.subject);
 
+// メールidが変更されたらそのメールの内容に変更
 watch(
   () => router.currentRoute.value.query.id,
   (newMailId) => {
     mailId = newMailId;
     mail = store.getters.getMailById(mailId);
     replyBody.value = "";
+    replySubject.value = "Re: " + mail.subject;
   }
 );
+
+// メッセージが変更されて、最後の１文字が「、」「。」ならgpt変換
+watch(
+  replyBody,
+  async (newReplyBody) => {
+    const lastChar = newReplyBody.slice(-1);
+    if (lastChar === "、" || lastChar === "。") {
+      const messages = newReplyBody.split(/。|、/);
+      const lastMessage = messages[messages.length - 2];
+      const results = await translateByGpt(lastMessage.replaceAll("\n", ""));
+      console.log(results)
+    }
+  }
+)
 
 
 const showReplyForm = ref(false);
@@ -166,6 +194,13 @@ const toggleReply = () => {
 const closeReplyForm = () => {
   showReplyForm.value = false;
 };
+
+const sendEmail = async () => {
+  const res = await sendMail(mail.from, replySubject.value, replyBody.value); 
+  console.log(res);
+  replyBody.value = "";
+  closeReplyForm();
+}
 
 
 
