@@ -3,7 +3,7 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from apiclient import errors
 from email.mime.text import MIMEText
-from creds.app import APP_CONFIG
+from .creds.app import APP_CONFIG
 import base64
 import json
 import requests
