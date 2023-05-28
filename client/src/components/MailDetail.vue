@@ -59,7 +59,7 @@
               <!-- hirayamasaki@kuhp-kyoto-u.ac.jp -->
               {{ mail.from }}
               <!-- <div class="mr-5 text-xs font-normal">{{ email.createdAt }}</div> -->
-              <div class="mr-2 text-xs font-normal text-zinc-700">{{ formatDate(mail.date) }}</div>
+              <div class="mr-2 text-xs font-normal text-zinc-700">{{ mail.date }}</div>
             </div>
             <span class="text-xs text-gray-500 font-normal">to me</span>
           </div>
@@ -148,7 +148,6 @@ import SendOutlineIcon from "vue-material-design-icons/SendOutline.vue";
 import { useRouter } from "vue-router";
 import store from '@/store/index';
 import { watch, ref } from 'vue';
-import { formatDate } from "@/utils";
 import { translateByGpt } from "@/apis/gpt";
 import { sendMail } from "@/apis/mail";
 

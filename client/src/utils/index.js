@@ -1,4 +1,5 @@
 import store from '@/store/index';
+import { getMails } from '@/apis/mail.js';
 
 
 export function formatDate(date_str) {
@@ -29,16 +30,10 @@ export function formatDate(date_str) {
   }
 }
 
-export function getAllMails(isAlarm=false) {
-
+export async function storeMails() {
+  const mails = await getMails();
   const mailDatas = [];
-
-  for(const mail of store.state.mails){
-    
-      if (isAlarm & !mail.expiry){
-          continue;
-      }
-    
+  for(const mail of mails){  
     mailDatas.push({
       "id": mail.id, //メールのID
       "threadId": mail.threadId, //メールのスレッドID
@@ -51,10 +46,15 @@ export function getAllMails(isAlarm=false) {
       "expiry": formatDate(mail.expiry),
     });
   }
+  store.commit('setMails', mailDatas);
+}
 
+
+export function getAllMails(isAlarm=false) {
+  const mailDatas = store.state.mails;
   if(!isAlarm) return mailDatas;
 
-  const sortedmails = mailDatas.sort((a, b) => {
+  const sortedmails = mailDatas.filter(mail => mail.expiry).sort((a, b) => {
     if (a.expiry === "今日" && b.expiry !== "今日") {
       return -1; 
     } else if (a.expiry !== "今日" && b.expiry === "今日") {
@@ -65,8 +65,6 @@ export function getAllMails(isAlarm=false) {
   });
 
   return sortedmails;
-
-
   
 }
 

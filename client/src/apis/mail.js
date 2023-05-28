@@ -3,7 +3,7 @@ import store from '@/store/index';
 
 export const BASE_URL = 'http://kuisteam2.pythonanywhere.com'
 
-export const getToken = async (code) => {
+export const storeToken = async (code) => {
     const res = await axios.post(BASE_URL+'/mail/auth/', {
         "code": code,
         "redirect_url": "http://localhost:8081"
@@ -32,7 +32,8 @@ export const getMails = async () => {
         mail.body = body
     }
 
-    store.commit('setMails', mails)
+    // store.commit('setMails', mails)
+    return mails
 }
 
 export const sendMail = async (to, subject, body) => {
