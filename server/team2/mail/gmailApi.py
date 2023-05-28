@@ -3,12 +3,13 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from apiclient import errors
 from email.mime.text import MIMEText
-from .creds.app import APP_CONFIG
+from creds.app import APP_CONFIG
 import base64
 import json
-from datetime import datetime, timedelta
 import requests
 from urllib.parse import quote
+from dateutil import parser
+import pytz
 
 class GmailApiManager:
     def __init__(self):
@@ -36,14 +37,12 @@ class GmailApiManager:
 
         return service
 
-    def parse_date(date_str):
-        date = "Mon, 15 May 2023 17:15:20 GMT"
-        datetime_onj = datetime.strptime(date_str, "%a, %d %b %Y %H:%M:%S %Z")
-        datetime_jpn = datetime_onj + timedelta(hours=9)
-        return datetime_jpn.strftime("%Y/%m/%dT%H:%M:%S+09:00")
+    def parse_date(self, date_str):
+        date = parser.parse(date_str)
+        date = date.astimezone(pytz.timezone('Asia/Tokyo'))
+        return date.strftime("%Y/%m/%dT%H:%M:%S+09:00")
     
     def parse_mail_detail(self, detail):
-
         body = []
         if 'data' in detail['payload']['body']:
             body.append(base64.urlsafe_b64decode(detail["payload"]["body"]["data"]).decode("UTF-8"))
