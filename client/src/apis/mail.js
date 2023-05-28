@@ -35,17 +35,26 @@ export const getMails = async () => {
     store.commit('setMails', mails)
 }
 
-export const sendMail = (to, subject, body) => {
-    axios.post(BASE_URL+'/mail/send/', {
-        "auth": store.state.auth,
+export const sendMail = async (to, subject, body) => {
+    // toが 「"name" <address>」という形式ならaddressだけ抽出
+    if (to.match(/<.*>/)) {
+        to = to.match(/<.*>/)[0].slice(1, -1)
+    }
+    
+    const auth = store.state.auth;
+    const res = await axios.post(BASE_URL+'/mail/send/', {
+        "auth": {
+            "token": auth.token,
+            "refresh_token": auth.refresh_token,
+            "expiry": auth.expiry,
+        },
         "mail": {
             "to": to,
             "subject": subject,
             "body": body
         }
-    }).then((res) => {
-        console.log(res.data)
     })
+    return res
 }
 
 export const setExpiry = async (thread_id, expiry) => {
