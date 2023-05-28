@@ -50,43 +50,41 @@
 
 <script setup>
 import ClockOutlineIcon from "vue-material-design-icons/ClockOutline.vue";
+import { ref, defineProps, toRefs } from "vue";
+import Information from "vue-material-design-icons/InformationOutline.vue";
+import TrashCanOutline from "vue-material-design-icons/TrashCanOutline.vue";
+import { setExpiry } from "@/apis/mail";
+import store from '@/store/index';
 
-import { ref } from "vue";
+const props = defineProps({
+  threadId: String
+});
+
+const threadId = toRefs(props).threadId.value;
+
 const SettingInformationOpen = ref(false);
 const showSettingInformation = () => {
     SettingInformationOpen.value = !SettingInformationOpen.value;
 }
 
-import Information from "vue-material-design-icons/InformationOutline.vue";
-import TrashCanOutline from "vue-material-design-icons/TrashCanOutline.vue";
-
-const alarmDate = ref("");
-const alarmTime = ref("");
+const options = {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit',
+  timeZone: 'Asia/Tokyo' // 日本のタイムゾーン
+};
+var japanTime = new Intl.DateTimeFormat('ja-JP', options).format(new Date());
+japanTime = japanTime.split(" ");
+const alarmDate = ref(japanTime[0].replaceAll("/", "-"));
+const alarmTime = ref(japanTime[1]);
 
 const saveAlarm = () => {
-  const dateParts = alarmDate.value.split("-");
-  const year = parseInt(dateParts[0]);
-  const month = parseInt(dateParts[1]) - 1;
-  const day = parseInt(dateParts[2]);
-  const date = new Date(year, month, day);
-
-  const timeParts = alarmTime.value.split(":");
-  const hours = parseInt(timeParts[0]);
-  const minutes = parseInt(timeParts[1]);
-
-  const time = new Date();
-  time.setFullYear(date.getFullYear());
-  time.setMonth(date.getMonth());
-  time.setDate(date.getDate());
-  time.setHours(hours);
-  time.setMinutes(minutes);
-  time.setSeconds(0);
-
-  const timezoneOffset = time.getTimezoneOffset() * 60000;
-  const localTime = new Date(time.getTime() - timezoneOffset);
-  const isoDateTime = localTime.toISOString().replace(/\:\d+\.\d+Z$/, "+09:00");
-
-  console.log(isoDateTime);
+    const expiry = alarmDate.value + "T" + alarmTime.value + "+09:00";
+    setExpiry(threadId, expiry);
+    store.commit("setExpiry", { threadId: threadId, expiry: expiry });
+    SettingInformationOpen.value = false;
 }
 
 

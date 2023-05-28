@@ -1,16 +1,14 @@
 import { createStore } from 'vuex'
+import { formatDate } from '@/utils/index.js'
 
 const store = createStore({
-    state () {
-        return {
-            auth: {
-                token: null,
-                refresh_token: null,
-                expiry: null,
-            },
-            mails: [],
-            focus_mail_id: null
-        }
+    state: {
+        auth: {
+            token: "init",
+            refresh_token: "init",
+            expiry: "init"
+        },
+        mails: []
     },
     mutations: {
         setAuth (state, auth) {
@@ -21,14 +19,29 @@ const store = createStore({
         setMails (state, mails) {
             state.mails = mails
         },
-        setFocusMailId (state, id) {
-            state.focus_mail_id = id
+        setExpiry (state, { threadId, expiry }) {
+            for (let mail of state.mails) {
+                if (mail.threadId === threadId) {
+                    mail.expiry = formatDate(expiry)
+                }
+            }
+        }
+    },
+    actions: {
+        setAuth: function(ctx, auth) {
+            ctx.commit('setAuth', auth)
+        },
+        setMails: function(ctx, mails) {
+            ctx.commit('setMails', mails)
         }
     },
     getters: {
         getMailById: (state) => (id) => {
             return state.mails.find(mail => mail.id === id)
         },
+        getAuth: (state) => () => {
+            return state.auth
+        }
     }
 })
 

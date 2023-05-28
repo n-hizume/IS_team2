@@ -3,26 +3,36 @@ import store from '@/store/index';
 
 const BASE_URL = 'http://kuisteam2.pythonanywhere.com'
 
-export const getToken = (code) => {
-    axios.post(BASE_URL+'/mail/auth/', {
+export const getToken = async (code) => {
+    const res = await axios.post(BASE_URL+'/mail/auth/', {
         "code": code,
-        "redirect_url": "http://localhost:8082"
-    }).then((res) => {
-        store.commit('setAuth', {
-            access_token: res.data.access_token,
-            refresh_token: res.data.refresh_token,
-            expiry_date: res.data.expires_in,
-        })
+        "redirect_url": "http://localhost:8081"
+    });
+    store.commit('setAuth', {
+        access_token: res.data.access_token,
+        refresh_token: res.data.refresh_token,
+        expiry_date: res.data.expires_in,
     })
-
 }
 
-export const getMails = () => {
-    axios.post(BASE_URL+'/mail/getall/', {
-        "auth": store.state.auth
-    }).then((res) => {
-        store.commit('setMails', res.data["mails"])
+export const getMails = async () => {
+    const auth = store.state.auth;
+    const res = await axios.post(BASE_URL+'/mail/getall/', {
+        "auth": {
+            "token": auth.token,
+            "refresh_token": auth.refresh_token,
+            "expiry": auth.expiry,
+        }
     })
+    const mails = res.data["mails"]
+    for (let mail of mails) {
+        let body = mail.body;
+        body = body.replace('\r\n', '<br>')
+        body = body.replace('\n', '<br>')
+        mail.body = body
+    }
+
+    store.commit('setMails', mails)
 }
 
 export const sendMail = (to, subject, body) => {
@@ -36,4 +46,12 @@ export const sendMail = (to, subject, body) => {
     }).then((res) => {
         console.log(res.data)
     })
+}
+
+export const setExpiry = async (thread_id, expiry) => {
+    const res = await axios.post(BASE_URL+'/mail/expiry/', {
+        "thread_id": thread_id,
+        "expiry": expiry
+    })
+    return res.data["result"]
 }

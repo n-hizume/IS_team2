@@ -43,7 +43,7 @@
           </div>  
         </div>  
         <div class="mt-2 ml-2 mr-3 mb-2 cursor-pointer">
-          <SettingInformation/>
+          <SettingInformation :threadId="mail.threadId"/>
         </div>  
 
       </div>
@@ -66,7 +66,8 @@
           <!-- <div>{{ email.body }}</div> -->
           
           <div class="mailbody py-2 text-zinc-700" style="overflow: scroll;" :style ="{ height: showReplyForm ? '220px' : '595px' }">
-            {{ mail.body }}</div>
+            <p v-html="mail.body"></p>
+          </div>
            
         </div>
       </div>
@@ -234,10 +235,6 @@ const closeReplyForm = () => {
     height:312px
   }
 
-  // .mailbody {
-  //   height:600px;
-  // }
-  
   .mailcontents {
     height: 695px;
   }

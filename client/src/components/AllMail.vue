@@ -65,7 +65,7 @@ var selectMail = (mail) => {
 
 const mailDatas = isAlarm?getAllMailsForAlarm():getAllMails();
 
-selectMail(mailDatas[0]);
+if(mailDatas.length>0) selectMail(mailDatas[0]);
 
 
 </script>

@@ -1,7 +1,7 @@
 import store from '@/store/index';
 
 
-function formatDate(date_str) {
+export function formatDate(date_str) {
   if(!date_str) return "";
 
   const date = new Date(date_str);

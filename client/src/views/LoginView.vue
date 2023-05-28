@@ -14,7 +14,7 @@
 
 <script setup>
 import { googleSdkLoaded } from "vue3-google-login";
-import { getToken } from '@/apis/mail'
+import { getToken, getMails } from '@/apis/mail'
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -24,14 +24,14 @@ const login = () => {
         google.accounts.oauth2.initCodeClient({
             client_id: '290280505278-jr662shaa29lke42ckon55fumjp8dn4b.apps.googleusercontent.com',
             scope: 'https://www.googleapis.com/auth/gmail.modify',
-            callback: (response) => {
-                getToken(response.code);
+            callback: async (response) => {
+                await getToken(response.code);
+                await getMails()
                 router.push({name:'email'})
             }
-        }).requestCode()
+        }).requestCode();
 
     })
-
 }
 
 
