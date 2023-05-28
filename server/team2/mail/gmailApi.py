@@ -55,7 +55,7 @@ class GmailApiManager:
             "id": detail["id"],
             "threadId": detail["threadId"],
             "snipet": detail["snippet"],
-            "body": body,
+            "body": body[0] if len(body) > 0 else "",
             "subject": [ header["value"] for header in detail["payload"]["headers"] if header["name"].lower() == "subject"][0],
             "from": [ header["value"] for header in detail["payload"]["headers"] if header["name"].lower() == "from"][0],
             "to": [ header["value"] for header in detail["payload"]["headers"] if header["name"].lower() == "to"][0],
