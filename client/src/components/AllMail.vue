@@ -49,7 +49,8 @@
 import ClockOutlineIcon from "vue-material-design-icons/ClockOutline.vue";
 import { useRouter } from "vue-router";
 import { getAllMails, getAllMailsForAlarm } from '@/utils/index'
-import { defineProps, toRefs } from 'vue'
+import { defineProps, toRefs, ref, watch } from 'vue'
+import store from '@/store/index'
 
 const router = useRouter()
 const props = defineProps({
@@ -63,10 +64,17 @@ var selectMail = (mail) => {
   else router.push({ name: "maildetail", query: { id: mail.id }});
 };
 
-const mailDatas = isAlarm?getAllMailsForAlarm():getAllMails();
+const mailDatas = ref(isAlarm?getAllMailsForAlarm():getAllMails());
 
-if(mailDatas.length>0) selectMail(mailDatas[0]);
+if(mailDatas.value.length>0) selectMail(mailDatas.value[0]);
+console.log(mailDatas.value.length)
 
+watch(
+  store.state.mails,
+  () => {
+    mailDatas.value = isAlarm?getAllMailsForAlarm():getAllMails();
+  }
+)
 
 </script>
 

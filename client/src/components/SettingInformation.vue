@@ -50,7 +50,7 @@
 
 <script setup>
 import ClockOutlineIcon from "vue-material-design-icons/ClockOutline.vue";
-import { ref, defineProps, toRefs } from "vue";
+import { ref, defineProps, toRefs, watch } from "vue";
 import Information from "vue-material-design-icons/InformationOutline.vue";
 import TrashCanOutline from "vue-material-design-icons/TrashCanOutline.vue";
 import { setExpiry } from "@/apis/mail";
@@ -60,7 +60,12 @@ const props = defineProps({
   threadId: String
 });
 
-const threadId = toRefs(props).threadId.value;
+const threadId = ref(toRefs(props).threadId.value);
+watch(props,
+    () => {
+        threadId.value = toRefs(props).threadId.value;
+    }
+)
 
 const SettingInformationOpen = ref(false);
 const showSettingInformation = () => {
@@ -82,8 +87,8 @@ const alarmTime = ref(japanTime[1]);
 
 const saveAlarm = async () => {
     const expiry = alarmDate.value + "T" + alarmTime.value + "+09:00";
-    await setExpiry(threadId, expiry);
-    store.commit("setExpiry", { threadId: threadId, expiry: expiry });
+    await setExpiry(threadId.value, expiry);
+    store.commit("setExpiry", { threadId: threadId.value, expiry: expiry });
     SettingInformationOpen.value = false;
 }
 
