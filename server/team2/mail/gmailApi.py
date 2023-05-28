@@ -40,7 +40,7 @@ class GmailApiManager:
     def parse_date(self, date_str):
         date = parser.parse(date_str)
         date = date.astimezone(pytz.timezone('Asia/Tokyo'))
-        return date.strftime("%Y/%m/%dT%H:%M:%S+09:00")
+        return date.strftime("%Y-%m-%dT%H:%M:%S+09:00")
     
     def parse_mail_detail(self, detail):
         body = []
