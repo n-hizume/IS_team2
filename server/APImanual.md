@@ -82,6 +82,25 @@
 }
 ```
 
+# [POST] mail/expiry
+
+## request
+```
+{
+    "thread_id": "string"
+    "expiry": "2023-05-10T24:00+09:00"
+}
+```
+
+## response (server -> client)
+```
+{ 
+    "result": "string" ("success"/"failure")
+    
+}
+```
+
+
 # [POST] /translation/gpt
 
 ## request

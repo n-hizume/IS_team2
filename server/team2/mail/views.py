@@ -2,9 +2,7 @@
 from django.http import HttpResponse
 
 
-from .mail import get_mails
-from .mail import send_mail
-from .mail import get_token
+from .mail import get_mails, send_mail, get_token, set_expiry
 
 '''def initialfunc(request):
     #return HttpResponse("Initial")
@@ -53,6 +51,16 @@ def gettokenfunc(request):
         
         json_str = request.body
         response = get_token(json_str)
+        return HttpResponse(response) 
+
+    else: 
+        return HttpResponse('POST ONLY')
+    
+def setexpiryfunc(request):
+    if request.method == 'POST':
+        
+        json_str = request.body
+        response = set_expiry(json_str)
         return HttpResponse(response) 
 
     else: 

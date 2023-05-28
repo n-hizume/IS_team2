@@ -4,4 +4,4 @@ from django.db import models
 
 class Mail(models.Model):
     ThreadId = models.CharField(max_length=100, primary_key=True) # メールスレッドid
-    ExpiryTime = models.DateTimeField() # 締め切り日時
+    ExpiryTime = models.CharField(max_length=100) # 締め切り日時

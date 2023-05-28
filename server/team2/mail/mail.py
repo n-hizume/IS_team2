@@ -47,7 +47,10 @@ def get(id):
 
 def insert(id, expiry_time):
     try:
-        Mail.objects.create(ThreadId=id, ExpiryTime=expiry_time)
+        if Mail.objects.filter(ThreadId=id).exists():
+            update(id, expiry_time)
+        else:
+            Mail.objects.create(ThreadId=id, ExpiryTime=expiry_time)
     except IntegrityError as e:
         print(f"error: {e}")
 
@@ -74,13 +77,11 @@ def add_expiry(mail_dict):
     id = mail_dict["threadId"]
     mail = get(id)
     if mail:
-        expiry = mail.ExpiryTime
-        expiry_str = expiry.strftime("%Y/%m/%d %H:%M:%S")
+        expiry_str = mail.ExpiryTime
     else:
         expiry_str = ""
     mail_dict["expiry"] = expiry_str  
 
-# TODO
 # メール送信
 def send_mail(json_data):
     send_dict = json.loads(json_data)
@@ -120,5 +121,10 @@ def get_token(json_auth):
     res = manager.get_token(code, redirect_url)
 
     return json.dumps(res, ensure_ascii=False)
-    
-    
+
+def set_expiry(json_data):
+    mail_dict = json.loads(json_data)
+    id = mail_dict["thread_id"]
+    expiry = mail_dict["expiry"]
+    insert(id, expiry)
+    return json.dumps({"result": "success"}, ensure_ascii=False)
