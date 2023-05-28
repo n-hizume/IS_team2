@@ -1,14 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-//import WriteView from '../components/WriteView.vue'
 import MailDetail from '../components/MailDetail.vue'
 import EmailView from '../views/EmailView.vue'
-import EmailWriteView from '../views/EmailWriteView.vue'
 import AlarmView from '../views/AlarmView.vue'
-import AlarmWriteView from '../views/AlarmWriteView.vue'
-//import SendView from '../views/SendView.vue'
 import LoginView from '../views/LoginView.vue'
-// import PageNotFound from '../views/PageNotFound.vue'
 
 
 const routes = [
@@ -30,10 +25,6 @@ const routes = [
     ]
   },
   {
-    path: '/write',
-    component: EmailWriteView
-  },
-  {
     path: '/alarm',
     component: AlarmView,
     children: [
@@ -45,22 +36,6 @@ const routes = [
       
     ]
   },
-  {
-    path: '/alarm.write',
-    component: AlarmWriteView
-  },
-  // {
-  //   path: '/send',
-  //   component: SendView
-  // },
-  
- 
-  
-  // ,
-  // { 
-  //   path: '*', 
-  //   component: PageNotFound
-  // }
 ]
 
 const router = createRouter({
