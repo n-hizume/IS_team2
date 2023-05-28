@@ -25,9 +25,6 @@
 
 import SideMenu from '@/components/SideMenu.vue';
 import AllMail from '@/components/AllMail.vue';
-//import WriteView from '@/components/WriteView.vue';
-// import store from '@/store/index';
-import { getMails } from '@/apis/mail';
 
 // var serverData = { 
 //     "mails":[
@@ -170,7 +167,7 @@ import { getMails } from '@/apis/mail';
 
 // console.log(store.auth)
 // store.commit('setMails', serverData.mails);
-getMails();
+
 
 
 </script>

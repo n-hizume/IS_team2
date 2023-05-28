@@ -80,9 +80,9 @@ japanTime = japanTime.split(" ");
 const alarmDate = ref(japanTime[0].replaceAll("/", "-"));
 const alarmTime = ref(japanTime[1]);
 
-const saveAlarm = () => {
+const saveAlarm = async () => {
     const expiry = alarmDate.value + "T" + alarmTime.value + "+09:00";
-    setExpiry(threadId, expiry);
+    await setExpiry(threadId, expiry);
     store.commit("setExpiry", { threadId: threadId, expiry: expiry });
     SettingInformationOpen.value = false;
 }
