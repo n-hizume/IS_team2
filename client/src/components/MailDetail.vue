@@ -124,9 +124,10 @@
               </div>  
           </button>
           <duv class="flex font-medium text-primary-600 mt-2 mr-3">
-            <button class="low bg-primary-700 hover:bg-primary-500">low</button>
-            <button class="middle bg-primary-700 hover:bg-primary-500">middle</button>
-            <button class="high bg-primary-700 hover:bg-primary-500">high</button>
+            <!-- bg-primary-300 text-white -->
+            <button @click="changeLevel(0)" :class="{'active': translateLevel===0}" class="low bg-primary-70 hover:bg-primary-500">low</button>
+            <button @click="changeLevel(1)" :class="{'active': translateLevel===1}" class="middle bg-primary-700 hover:bg-primary-500">middle</button>
+            <button @click="changeLevel(2)" :class="{'active': translateLevel===2}" class="high bg-primary-700 hover:bg-primary-500">high</button>
           </duv>
 
         </div>  
@@ -158,6 +159,7 @@ var mail = store.getters.getMailById(mailId);
 
 const replyBody = ref("");
 const replySubject = ref("Re: " + mail.subject);
+const translateLevel = ref(0);
 
 // メールidが変更されたらそのメールの内容に変更
 watch(
@@ -178,7 +180,7 @@ watch(
     if (lastChar === "、" || lastChar === "。") {
       const messages = newReplyBody.split(/。|、/);
       const lastMessage = messages[messages.length - 2];
-      const results = await translateByGpt(lastMessage.replaceAll("\n", ""));
+      const results = await translateByGpt(lastMessage.replaceAll("\n", ""), translateLevel);
       console.log(results)
     }
   }
@@ -199,6 +201,10 @@ const sendEmail = async () => {
   console.log(res);
   replyBody.value = "";
   closeReplyForm();
+}
+
+const changeLevel = (level) => {
+  translateLevel.value = level;
 }
 
 
@@ -300,6 +306,12 @@ const sendEmail = async () => {
     box-shadow: 0 0px 15px 0 rgba(0, 0, 0, .08);
     border-radius: 0px 15px 15px 0px;
   }
+
+  .active {
+    background: rgb(37 82 49);
+    color: white;
+  }
+
 #NewMessageSection {
   overflow: hidden;
   width: 560px;
