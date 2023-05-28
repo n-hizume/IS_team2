@@ -68,8 +68,7 @@ class GmailApiManager:
         messages = []
 
         max_results = 100
-        # query = "label:CATEGORY_PERSONAL label:demo"
-        query=""
+        query = "label:demo"
 
         try:
             message_ids = (
