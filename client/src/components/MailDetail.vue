@@ -119,7 +119,7 @@
             justify-center
             ">
               <SendOutlineIcon :size="17" />
-              <div class="ml-2" @click="sendEmail">
+              <div class="ml-2">
                 送信
               </div>  
           </button>
@@ -150,6 +150,7 @@ import store from '@/store/index';
 import { watch, ref } from 'vue';
 import { formatDate } from "@/utils";
 import { translateByGpt } from "@/apis/gpt";
+import { sendMail } from "@/apis/mail";
 
 
 var router = useRouter();
@@ -194,11 +195,11 @@ const closeReplyForm = () => {
   showReplyForm.value = false;
 };
 
-const sendEmail = () => {
-  const to = mail.from;
-  const subject = mail.subject;
-  const body = replyBody.value;
-  console.log(to, subject, body);
+const sendEmail = async () => {
+  const res = await sendMail(mail.from, replySubject.value, replyBody.value); 
+  console.log(res);
+  replyBody.value = "";
+  closeReplyForm();
 }
 
 
