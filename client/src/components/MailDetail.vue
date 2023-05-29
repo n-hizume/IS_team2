@@ -228,12 +228,23 @@ const getButtonStyle = (result) => {
 let showButtons = true;
 
 const updateTextarea = (result) => {
-  const messages = replyBody.value.split(/。|、/);
-  const lastMessageIndex = messages.length - 2;
-  if (lastMessageIndex >= 0) {
-    messages[lastMessageIndex] = result;
-    replyBody.value = messages.join('');
+  const replyWithoutLastChar = replyBody.value.slice(0, -1);
+  const messages1 = replyWithoutLastChar.split(/。|、/);
+  const messages2 = replyWithoutLastChar.split("。");
+  const messages3 = replyWithoutLastChar.split("、");
+
+  // 最後のメッセージの一個前が、「。」だった場合
+  if(messages1[messages1.length-1] === messages2[messages2.length-1]){
+    messages1[messages1.length-1] = result;
+    replyBody.value = messages1.join('。');
   }
+
+  // 最後のメッセージの一個前が、「、」だった場合
+  if(messages1[messages1.length-1] === messages3[messages3.length-1]){
+    messages1[messages1.length-1] = result;
+    replyBody.value = messages1.join('、');
+  }
+  
   showButtons = false;
   results.value = []; // ボタン表示をクリアする
 };
