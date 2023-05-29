@@ -107,7 +107,7 @@
               " rows="14" placeholder="Message">
                 
         </textarea>
-        <div class="smartgpt flex text-xs font-medium text-primary-600 ml-2 mr-2">
+        <div class="smartgpt flex text-xs font-medium text-primary-600 mr-2">
           <button v-for="result in results" :key="result.id" class="result-item rounded-3xl m-1" :style="getButtonStyle(result)"
           @click="updateTextarea(result)">
             <div class="mx-2 my-0.5" v-if="showButtons">
@@ -194,19 +194,23 @@ watch(
       const messages = newReplyBody.split(/。|、/);
       const lastMessage = messages[messages.length - 2];
       const translationResults = await translateByGpt(lastMessage.replaceAll("\n", ""), translateLevel);
-      results.value = translationResults; // 結果を更新
+      const punctuatedResults = translationResults.map(result => result + lastChar + " ");
+
+      const top3Results = punctuatedResults.slice(0, 3);
+      results.value = top3Results;
     }
   }
-)
+);
+
 
 const getButtonStyle = (result) => {
   const textLength = result.length;
   const minHeight = "10px"; // 最低限の高さ（ピクセル単位）を設定する
   const buttonHeight = `${Math.max(textLength * "2px", minHeight)}`;
-  // const buttonWidth = `${textLength * 10}px`; // 幅をテキストの長さに応じて調整する例
+  const buttonWidth = "400px"; // 幅をテキストの長さに応じて調整する例
   return {
     height: buttonHeight,
-    // width: buttonWidth,
+    width: buttonWidth,
   };
 };
 
@@ -214,7 +218,12 @@ const getButtonStyle = (result) => {
 let showButtons = true;
 
 const updateTextarea = (result) => {
-  replyBody.value = result;
+  const messages = replyBody.value.split(/。|、/);
+  const lastMessageIndex = messages.length - 2;
+  if (lastMessageIndex >= 0) {
+    messages[lastMessageIndex] = result;
+    replyBody.value = messages.join('');
+  }
   showButtons = false;
   results.value = []; // ボタン表示をクリアする
 };
@@ -369,7 +378,7 @@ const changeLevel = (level) => {
 
   .smartgpt {
   position: absolute;
-  width: 678px;
+  width: 100%;
   bottom: 100px;
 }
 

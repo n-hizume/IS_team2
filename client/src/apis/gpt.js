@@ -11,8 +11,11 @@ export const translateByGpt = async (text, level=0) => {
     console.log(text, level)
     await new Promise(resolve => setTimeout(resolve, 5000));
     return [
-        text +"のダミーアンサーひとつめです。"+" ", 
-        text +"のダミーアンサーふたつめです。"+" ", 
-        text +"のダミーアンサーみっつめです。"+" ",
+        text +"のダミーアンサーひとつめです", 
+        text +"のダミーアンサーふたつめです", 
+        text +"のダミーアンサーみっつめです",
+        text +"のダミーアンサーよっつめです",
+        text +"のダミーアンサーいつつめです",
+        text +"のダミーアンサーむっつめです",
     ]
 }
