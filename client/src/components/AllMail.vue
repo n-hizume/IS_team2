@@ -13,7 +13,7 @@
           @click="selectMail(mail)"
         >
           <div class="flex items-center justify-between mb-1">
-            <div class="mr-1 text-zinc-800">
+            <div class="from mr-1 text-zinc-800">
               <p style="font-size:15px">{{ mail.from }}</p>
             </div>  
             <div class="ml-5">
@@ -112,6 +112,10 @@ watch(
 
   .snipet{
     height:40px;
+  }
+
+  .from{
+    width: 264px;
   }
 
   .expiry.notexist {
