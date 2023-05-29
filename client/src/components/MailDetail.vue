@@ -238,6 +238,7 @@ const getButtonStyle = (result) => {
 let showButtons = true;
 
 const updateTextarea = (result) => {
+  // replyBody.value = result
   const replyWithoutLastChar = replyBody.value.slice(0, -1);
   const messages1 = replyWithoutLastChar.split(/。|、/);
   const messages2 = replyWithoutLastChar.split("。");
@@ -245,14 +246,14 @@ const updateTextarea = (result) => {
 
   // 最後のメッセージの一個前が、「。」だった場合
   if(messages1[messages1.length-1] === messages2[messages2.length-1]){
-    messages1[messages1.length-1] = result;
-    replyBody.value = messages1.join('。');
+    messages2[messages2.length-1] = result;
+    replyBody.value = messages2.join('。');
   }
 
   // 最後のメッセージの一個前が、「、」だった場合
   if(messages1[messages1.length-1] === messages3[messages3.length-1]){
-    messages1[messages1.length-1] = result;
-    replyBody.value = messages1.join('、');
+    messages3[messages3.length-1] = result;
+    replyBody.value = messages3.join('、');
   }
 
   showButtons = false;
