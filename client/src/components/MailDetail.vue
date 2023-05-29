@@ -238,6 +238,7 @@ window.addEventListener('keydown', (event) => {
 const showReplyForm = ref(false);
 const toggleReply = () => {
   showReplyForm.value = !showReplyForm.value;
+  replySubject.value = "Re: " + mail.subject;
 };
 
 const closeReplyForm = () => {
