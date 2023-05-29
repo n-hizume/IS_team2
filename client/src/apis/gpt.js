@@ -2,7 +2,7 @@ import { BASE_URL } from "./mail"
 import axios from 'axios'
 
 export const translateByGpt = async (text, level=0) => {
-    const isProd = false;
+    const isProd = true;
     if (isProd) {
         const res =  await axios.post(BASE_URL+'/translation/gpt/', {
             "word": text,

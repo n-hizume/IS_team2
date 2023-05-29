@@ -201,7 +201,10 @@ const setTransform = async (newReplyBody) => {
     const lastMessage = messages[messages.length - 2];
     isTranslating = true
     const translationResults = await translateByGpt(lastMessage.replaceAll("\n", ""), translateLevel);
-    const punctuatedResults = translationResults.map(result => result + lastChar + " ");
+    console.log(translationResults)
+    const punctuatedResults = translationResults
+                                .map(res => res.replaceAll("。", "").replaceAll("、", ""))
+                                .map(result => result + lastChar + " ");
     const top3Results = punctuatedResults.slice(0, 3);
     results.value = top3Results;
     isTranslating = false
