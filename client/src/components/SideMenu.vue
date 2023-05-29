@@ -99,7 +99,8 @@
     </div>
 
     <div
-      v-if="newMessageOpen" 
+      v-if="newMessageOpen"
+      v-loading="isPushTransformButton"
       id="NewMessageSection" 
       class="
         absolute 
@@ -130,7 +131,7 @@
       </div>
 
       <div class="m-1">
-        <textarea v-model="body" placeholder="please input content" style="resize:none" class="
+        <textarea v-model="body"  placeholder="please input content" style="resize:none" class="
             w-full 
             border-transparent 
             border-none 
@@ -168,14 +169,22 @@
           bg-green-700 
           hover:bg-green-600 
           text-white 
-          text-sm 
+          <!-- text-sm  -->
           font-bold 
           py-2 
           px-4 
+          text-lg 
           rounded-full
+          justify-center
         "
         >
-          敬語変換 
+          <div v-if="isPushTransformButton">
+            <el-icon :size="17"><Loading /></el-icon>
+          </div>
+          <div v-else>
+            <el-icon :size="17"><EditPen /></el-icon>
+            敬語変換
+          </div> 
         </button>
 
     </div>
@@ -194,8 +203,11 @@ import SendOutlineIcon from "vue-material-design-icons/SendOutline.vue";
 import FileOutlineIcon from "vue-material-design-icons/FileOutline.vue";
 import CloseIcon from "vue-material-design-icons/Close.vue";
 import Cog from "vue-material-design-icons/CogOutline.vue";
+import {EditPen} from "@element-plus/icons-vue"
+import {Loading} from "@element-plus/icons-vue"
+import { translateByGpt } from "@/apis/gpt";
 
-import axios from 'axios';
+// import axios from 'axios';
 
 let newMessageOpen = ref(false)
 let toEmail = ref('')
@@ -214,6 +226,8 @@ const movealarmScreen = () => {
 //   router.push('/send')
 // };
 
+var isPushTransformButton = ref(false)
+// var loading = ref(true)
 
 /* const sendEmail = () => {
   // 发起POST请求
@@ -230,20 +244,30 @@ const movealarmScreen = () => {
     });
 }; */
 
-const transformKeigo = () => {
-  axios
-    .post('http://127.0.0.1:8000/translation/gpt/', { "word": body, "level": 0 })
-    .then((response) => {
-      // body = response.data["translated_words"][0];
-      body.value = response.data.translated_words.join('\n');
-      // const reslist = response.data["translated_words"]
-      // const num = reslist.length()
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-};
+// const transformKeigo = () => {
+//   axios
+//     .post('http://127.0.0.1:8000/translation/gpt/', { "word": body, "level": 0 })
+//     .then((response) => {
+//       // body = response.data["translated_words"][0];
+//       body.value = response.data.translated_words.join('\n');
+//       // const reslist = response.data["translated_words"]
+//       // const num = reslist.length()
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+// };
 
+const translateLevel = ref(0);
+
+const transformKeigo = () => {
+  isPushTransformButton.value = true
+  // const translationResults = translateByGpt(body.value, translateLevel);
+  translateByGpt(body.value, translateLevel).then(result => {
+    body.value = result[0]
+    isPushTransformButton.value = false
+  }); 
+};
 
 </script>
 
