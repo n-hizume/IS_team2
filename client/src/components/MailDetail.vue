@@ -103,7 +103,7 @@
               " rows="2" placeholder="Subject">
         
 
-        <textarea v-model="replyBody" style="resize:none;" class=" textarea w-full 
+        <textarea @keydown="onKeyDown" v-model="replyBody" style="resize:none;" class=" textarea w-full 
               border-transparent 
               border-none 
               focus:ring-0 
@@ -194,23 +194,35 @@ watch(
 
 const results = ref([]);
 
+const setTransform = async (newReplyBody) => {
+  const lastChar = newReplyBody.slice(-1);
+  if (lastChar === "、" || lastChar === "。") {
+    const messages = newReplyBody.split(/。|、/);
+    const lastMessage = messages[messages.length - 2];
+    isTranslating = true
+    const translationResults = await translateByGpt(lastMessage.replaceAll("\n", ""), translateLevel);
+    const punctuatedResults = translationResults.map(result => result + lastChar + " ");
+    const top3Results = punctuatedResults.slice(0, 3);
+    results.value = top3Results;
+    isTranslating = false
+  } else {
+    results.value = [];
+    showButtons = false;
+  }
+}
+
 // メッセージが変更されて、最後の１文字が「、」「。」ならgpt変換
 watch(
   replyBody,
-  async (newReplyBody) => {
-    const lastChar = newReplyBody.slice(-1);
-    if (lastChar === "、" || lastChar === "。") {
-      const messages = newReplyBody.split(/。|、/);
-      const lastMessage = messages[messages.length - 2];
-      isTranslating = true
-      const translationResults = await translateByGpt(lastMessage.replaceAll("\n", ""), translateLevel);
-      const punctuatedResults = translationResults.map(result => result + lastChar + " ");
-      const top3Results = punctuatedResults.slice(0, 3);
-      results.value = top3Results;
-      isTranslating = false
-    }
-  }
+  setTransform
 );
+
+const onKeyDown = (event) => {
+  if (event.key !== "Enter") {
+    results.value = [];
+    showButtons = false;
+  }
+}
 
 
 const getButtonStyle = (result) => {
@@ -228,12 +240,24 @@ const getButtonStyle = (result) => {
 let showButtons = true;
 
 const updateTextarea = (result) => {
-  const messages = replyBody.value.split(/。|、/);
-  const lastMessageIndex = messages.length - 2;
-  if (lastMessageIndex >= 0) {
-    messages[lastMessageIndex] = result;
-    replyBody.value = messages.join('');
+  // replyBody.value = result
+  const replyWithoutLastChar = replyBody.value.slice(0, -1);
+  const messages1 = replyWithoutLastChar.split(/。|、/);
+  const messages2 = replyWithoutLastChar.split("。");
+  const messages3 = replyWithoutLastChar.split("、");
+
+  // 最後のメッセージの一個前が、「。」だった場合
+  if(messages1[messages1.length-1] === messages2[messages2.length-1]){
+    messages2[messages2.length-1] = result;
+    replyBody.value = messages2.join('。');
   }
+
+  // 最後のメッセージの一個前が、「、」だった場合
+  if(messages1[messages1.length-1] === messages3[messages3.length-1]){
+    messages3[messages3.length-1] = result;
+    replyBody.value = messages3.join('、');
+  }
+
   showButtons = false;
   results.value = []; // ボタン表示をクリアする
 };
@@ -273,6 +297,7 @@ const sendEmail = async () => {
 
 const changeLevel = (level) => {
   translateLevel.value = level;
+  setTransform(replyBody.value);
 }
 
 
