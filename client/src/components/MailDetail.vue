@@ -158,7 +158,7 @@ import Close from "vue-material-design-icons/Close.vue";
 import SendOutlineIcon from "vue-material-design-icons/SendOutline.vue";
 import { useRouter } from "vue-router";
 import store from '@/store/index';
-import { watch, ref ,computed} from 'vue';
+import { watch, ref } from 'vue';
 import { translateByGpt } from "@/apis/gpt";
 import { sendMail } from "@/apis/mail";
 
@@ -184,17 +184,6 @@ watch(
 );
 
 const results = ref([]);
-
-let enterKeyPressed = false;
-
-window.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    enterKeyPressed = true;
-  }
-});
-
-
-
 
 // メッセージが変更されて、最後の１文字が「、」「。」ならgpt変換
 watch(
@@ -222,17 +211,6 @@ const getButtonStyle = (result) => {
 };
 
 
-// const getButtonStyle = (result) => {
-//   const textLength = result.length;
-//   const minHeight = "20px"; // 最低限の高さ（ピクセル単位）を設定する
-//   const buttonHeight = `${textLength * 1.8}px`; // 2pxごとに高さを調整する例
-//   // const buttonWidth = `${textLength * 10}px`; // 10pxごとに幅を調整する例
-//   return {
-//     height: buttonHeight,
-//     // width: buttonWidth,
-//   };
-// };
-
 let showButtons = true;
 
 const updateTextarea = (result) => {
@@ -243,11 +221,11 @@ const updateTextarea = (result) => {
 
 // 以下の watch 関数を追加
 watch(
-() => replyBody.value,
-() => {
-  showButtons = true;
-  results.value = []; // ボタン表示をクリアする
-}
+  () => replyBody.value,
+  () => {
+    showButtons = true;
+    results.value = []; // ボタン表示をクリアする
+  }
 );
 
 
