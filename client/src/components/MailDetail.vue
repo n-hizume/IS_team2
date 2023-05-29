@@ -85,14 +85,15 @@
           </div>  
         </div>
 
-        <textarea v-model="replySubject" style="resize:none; height: 40px" class=" textarea w-full 
+        <input type="text" v-model="replySubject" style="resize:none;" class="replysubject w-full
               border-transparent 
               border-none 
               focus:ring-0 
               outline-none
               bg-primary-700
+              text-zinc-700
               " rows="2" placeholder="Subject">
-        </textarea>
+        
 
         <textarea v-model="replyBody" style="resize:none;" class=" textarea w-full 
               border-transparent 
@@ -100,11 +101,20 @@
               focus:ring-0 
               outline-none
               bg-primary-700
+              -mt-1.5
+              text-zinc-700
               
               " rows="14" placeholder="Message">
                 
         </textarea>
-        
+        <div class="smartgpt flex text-xs font-medium text-primary-600 ml-2 mr-2">
+          <button v-for="result in results" :key="result.id" class="result-item rounded-3xl m-1" :style="getButtonStyle(result)"
+          @click="updateTextarea(result)">
+            <div class="mx-2 my-0.5" v-if="showButtons">
+              {{ result }}
+            </div>
+          </button>
+        </div>
         <div class="write2-b flex justify-between bg-primary-700 -mt-1.5">
           <button @click="sendEmail" class="send 
             bg-primary-300 
@@ -125,7 +135,7 @@
           </button>
           <duv class="flex font-medium text-primary-600 mt-2 mr-3">
             <!-- bg-primary-300 text-white -->
-            <button @click="changeLevel(0)" :class="{'active': translateLevel===0}" class="low bg-primary-70 hover:bg-primary-500">low</button>
+            <button @click="changeLevel(0)" :class="{'active': translateLevel===0}" class="low bg-primary-700 hover:bg-primary-500">low</button>
             <button @click="changeLevel(1)" :class="{'active': translateLevel===1}" class="middle bg-primary-700 hover:bg-primary-500">middle</button>
             <button @click="changeLevel(2)" :class="{'active': translateLevel===2}" class="high bg-primary-700 hover:bg-primary-500">high</button>
           </duv>
@@ -148,7 +158,7 @@ import Close from "vue-material-design-icons/Close.vue";
 import SendOutlineIcon from "vue-material-design-icons/SendOutline.vue";
 import { useRouter } from "vue-router";
 import store from '@/store/index';
-import { watch, ref } from 'vue';
+import { watch, ref ,computed} from 'vue';
 import { translateByGpt } from "@/apis/gpt";
 import { sendMail } from "@/apis/mail";
 
@@ -161,6 +171,7 @@ const replyBody = ref("");
 const replySubject = ref("Re: " + mail.subject);
 const translateLevel = ref(0);
 
+
 // メールidが変更されたらそのメールの内容に変更
 watch(
   () => router.currentRoute.value.query.id,
@@ -172,6 +183,19 @@ watch(
   }
 );
 
+const results = ref([]);
+
+let enterKeyPressed = false;
+
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    enterKeyPressed = true;
+  }
+});
+
+
+
+
 // メッセージが変更されて、最後の１文字が「、」「。」ならgpt変換
 watch(
   replyBody,
@@ -180,12 +204,58 @@ watch(
     if (lastChar === "、" || lastChar === "。") {
       const messages = newReplyBody.split(/。|、/);
       const lastMessage = messages[messages.length - 2];
-      const results = await translateByGpt(lastMessage.replaceAll("\n", ""), translateLevel);
-      console.log(results)
+      const translationResults = await translateByGpt(lastMessage.replaceAll("\n", ""), translateLevel);
+      results.value = translationResults; // 結果を更新
     }
   }
 )
 
+const getButtonStyle = (result) => {
+  const textLength = result.length;
+  const minHeight = "10px"; // 最低限の高さ（ピクセル単位）を設定する
+  const buttonHeight = `${Math.max(textLength * "2px", minHeight)}`;
+  // const buttonWidth = `${textLength * 10}px`; // 幅をテキストの長さに応じて調整する例
+  return {
+    height: buttonHeight,
+    // width: buttonWidth,
+  };
+};
+
+
+// const getButtonStyle = (result) => {
+//   const textLength = result.length;
+//   const minHeight = "20px"; // 最低限の高さ（ピクセル単位）を設定する
+//   const buttonHeight = `${textLength * 1.8}px`; // 2pxごとに高さを調整する例
+//   // const buttonWidth = `${textLength * 10}px`; // 10pxごとに幅を調整する例
+//   return {
+//     height: buttonHeight,
+//     // width: buttonWidth,
+//   };
+// };
+
+let showButtons = true;
+
+const updateTextarea = (result) => {
+  replyBody.value = result;
+  showButtons = false;
+  results.value = []; // ボタン表示をクリアする
+};
+
+// 以下の watch 関数を追加
+watch(
+() => replyBody.value,
+() => {
+  showButtons = true;
+  results.value = []; // ボタン表示をクリアする
+}
+);
+
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') {
+    showButtons = true;
+  }
+});
 
 const showReplyForm = ref(false);
 const toggleReply = () => {
@@ -261,10 +331,16 @@ const changeLevel = (level) => {
   .write {
     width: 100%;
     height: 440px;
+    position: relative;
   }
 
   .write2-top {
     border-radius: 15px 15px 0 0;
+    height: 28px;
+  }
+
+  .replysubject{
+    height: 28px;
   }
   
   .write2-b {
@@ -273,7 +349,7 @@ const changeLevel = (level) => {
   }
 
   .textarea {
-    height:312px
+    height:303px
   }
 
   .mailcontents {
@@ -308,9 +384,24 @@ const changeLevel = (level) => {
   }
 
   .active {
-    background: rgb(37 82 49);
+    background: #467B55;
     color: white;
   }
+
+  .smartgpt {
+  position: absolute;
+  width: 678px;
+  bottom: 100px;
+}
+
+.result-item {
+  width:400px;
+  background: #FDFDFD;
+  border: 1px solid;
+  border-color: #467B55
+}
+
+
 
 #NewMessageSection {
   overflow: hidden;
