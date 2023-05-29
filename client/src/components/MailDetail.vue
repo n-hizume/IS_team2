@@ -275,7 +275,7 @@ const changeLevel = (level) => {
   .right-top{
     width:100%;
     height:69px;
-    background: #FDFDFD;
+    background: #DEE8DF;
     border-radius: 15px 15px 0 0;
     box-shadow: 0 0px 20px 0 rgba(0, 0, 0, .05);
   }
