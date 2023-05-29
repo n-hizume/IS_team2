@@ -22,6 +22,7 @@
 
           <router-link to="/email">
             <div class="
+                
                 flex
                 justify-center
                 mt-2
@@ -45,6 +46,7 @@
 
 
           <div class="
+              
               flex 
               justify-center 
               mt-2
@@ -63,7 +65,7 @@
             </div>
           </div>
 
-          <div class="flex justify-center mt-2 ml-5 px-8 py-3  bg-primary-200 hover:bg-primary-500 w-52 h-21 mr-5 rounded-3xl cursor-pointer">
+          <div class=" flex justify-center mt-2 ml-5 px-8 py-3  bg-primary-200 hover:bg-primary-500 w-52 h-21 mr-5 rounded-3xl cursor-pointer">
             <div class="flex items-center text-primary-600">
               <div class="ml-2">
                 <SendOutlineIcon :size="17" />
@@ -73,7 +75,7 @@
           </div>
 
           <div
-            class="flex justify-center mt-2 ml-5 mr-5 px-8 py-3  bg-primary-200 hover:bg-primary-500 w-52 h-21 rounded-3xl cursor-pointer">
+            class=" flex justify-center mt-2 ml-5 mr-5 px-8 py-3  bg-primary-200 hover:bg-primary-500 w-52 h-21 rounded-3xl cursor-pointer">
             <div class="flex items-center text-primary-600">
               <div class="mr-1">
                 <TrashCanOutline :size="17" />
@@ -83,7 +85,7 @@
           </div>
 
           <div @click="movealarmScreen" 
-            class="flex justify-center mt-2 ml-5 mr-5 px-8 py-3  bg-primary-200 hover:bg-primary-500 w-52 h-21 rounded-3xl cursor-pointer">
+            class=" flex justify-center mt-2 ml-5 mr-5 px-8 py-3  bg-primary-200 hover:bg-primary-500 w-52 h-21 rounded-3xl cursor-pointer">
             <div class="flex items-center text-primary-600">
               <div class="mr-3">
                 <ClockOutlineIcon :size="17" />
@@ -364,6 +366,11 @@ box-shadow: 0px 0px 12px 5px rgba(0, 0, 0, .08);
 .button-space {
   margin-right: 20px; /* 调整空隙的大小 */
 }
+
+// .sidebutton :hover {
+//   cursor: pointer;
+//   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+// }
 
 
 

@@ -9,11 +9,11 @@
           v-for="mail in mailDatas"
           :key="mail.id"
           style="text-align: left; overflow:hidden;"
-          class="mail my-0.5 rounded-2xl cursor-pointer px-4 py-0.5"
+          class="mail my-0.5 rounded-2xl cursor-pointer px-4 py-0.5 hover:bg-primary-1000"
           @click="selectMail(mail)"
         >
           <div class="flex items-center justify-between mb-1">
-            <div class="mr-1 text-zinc-800">
+            <div class="from mr-1 text-zinc-800">
               <p style="font-size:15px">{{ mail.from }}</p>
             </div>  
             <div class="ml-5">
@@ -112,6 +112,10 @@ watch(
 
   .snipet{
     height:40px;
+  }
+
+  .from{
+    width: 264px;
   }
 
   .expiry.notexist {
