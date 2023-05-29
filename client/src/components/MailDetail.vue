@@ -103,7 +103,7 @@
               " rows="2" placeholder="Subject">
         
 
-        <textarea v-model="replyBody" style="resize:none;" class=" textarea w-full 
+        <textarea @keydown="onKeyDown" v-model="replyBody" style="resize:none;" class=" textarea w-full 
               border-transparent 
               border-none 
               focus:ring-0 
@@ -208,9 +208,19 @@ watch(
       const top3Results = punctuatedResults.slice(0, 3);
       results.value = top3Results;
       isTranslating = false
+    } else {
+      results.value = [];
+      showButtons = false;
     }
   }
 );
+
+const onKeyDown = (event) => {
+  if (event.key !== "Enter") {
+    results.value = [];
+    showButtons = false;
+  }
+}
 
 
 const getButtonStyle = (result) => {
@@ -244,7 +254,7 @@ const updateTextarea = (result) => {
     messages1[messages1.length-1] = result;
     replyBody.value = messages1.join('、');
   }
-  
+
   showButtons = false;
   results.value = []; // ボタン表示をクリアする
 };
