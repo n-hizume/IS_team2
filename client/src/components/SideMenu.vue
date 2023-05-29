@@ -100,7 +100,7 @@
 
     <div
       v-if="newMessageOpen" 
-      id="NewbodySection" 
+      id="NewMessageSection" 
       class="
         absolute 
         bottom-11 
