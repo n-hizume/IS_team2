@@ -1,7 +1,7 @@
 <template>
   <div class="writebox ml-4 mr-6">
     <div class="right w-full mt-4" :style= "{ height: showReplyForm ? '355px' : 'auto' }"> 
-      <div class="right-top flex justify-between" :style= "{ height: showReplyForm ? '36px' : '69px' }">
+      <div class="right-top flex justify-between" :style= "{ height: showReplyForm ? '30px' : '69px' }">
         <div class="flex">
           <!-- <router-link to="/email">
                 <IconComponent
@@ -12,7 +12,7 @@
             </router-link> -->
           <!--Menu :size="27" /-->
           <div class="flex" v-if="!showReplyForm">
-            <div class="reply justify-center my-2 ml-4 px-3 py-3  bg-primary-700 hover:bg-primary-500 rounded-3xl cursor-pointer" 
+            <div class="reply justify-center my-2 ml-4 px-3 py-3  bg-primary-700 hover:bg-primary-800 rounded-3xl cursor-pointer" 
             @click="toggleReply">
               <div class="flex items-center text-primary-600">
                 <Reply :size="27" />
@@ -22,7 +22,7 @@
               </div>  
             </div>
             
-            <div class="replyforall my-4 ml-2 px-3 py-3  bg-primary-700 hover:bg-primary-500 rounded-3xl cursor-pointer"
+            <div class="replyforall my-4 ml-2 px-3 py-3  bg-primary-700 hover:bg-primary-800 rounded-3xl cursor-pointer"
             @click="movewriteScreen">
               <div class="flex text-center text-primary-600">
                 <ReplyAll :size="20" />
@@ -31,7 +31,7 @@
                 </div>
               </div>  
             </div>
-            <div class="transfer my-4 ml-2 px-3 py-3  bg-primary-700 hover:bg-primary-500 rounded-3xl cursor-pointer"
+            <div class="transfer my-4 ml-2 px-3 py-3  bg-primary-700 hover:bg-primary-800 rounded-3xl cursor-pointer"
             @click="movewriteScreen">
               <div class="flex text-center text-primary-600">
                 <Share :size="20" />
@@ -42,7 +42,7 @@
             </div>
           </div>  
         </div>  
-        <div class="mt-2 ml-2 mr-3 mb-2 cursor-pointer">
+        <div class="mt-1 ml-2 mr-3 mb-2.5 cursor-pointer">
           <SettingInformation :threadId="mail.threadId"/>
         </div>  
 
@@ -88,7 +88,7 @@
             <Reply :size="20" />
             <div class="ml-1.5">{{ mail.from }}</div>
           </div>
-          <div class="cursor-pointer text-zinc-600">
+          <div class="cursor-pointer text-primary-600">
             <Close :size="20" @click="closeReplyForm"/>
           </div>  
         </div>
@@ -116,7 +116,7 @@
                 
         </textarea>
         <div class="smartgpt flex text-xs font-medium text-primary-600 mr-2">
-          <button v-for="result in results" :key="result.id" class="result-item rounded-3xl m-1" :style="getButtonStyle(result)"
+          <button v-for="result in results" :key="result.id" class="result-item rounded-3xl m-1 hover:bg-primary-1000" :style="getButtonStyle(result)"
           @click="updateTextarea(result)">
             <div class="mx-2 my-0.5" v-if="showButtons">
               {{ result }}
@@ -126,7 +126,7 @@
         <div class="write2-b flex justify-between bg-primary-700 -mt-1.5">
           <button @click="sendEmail" class="send 
             bg-primary-300 
-            hover:bg-primary-400 
+            hover:bg-primary-900 
             text-white 
             text-lg 
             font-bold 
@@ -141,11 +141,11 @@
                 送信
               </div>  
           </button>
-          <duv class="flex font-medium text-primary-600 mt-2 mr-3">
+          <duv class="tranlatebutton flex font-medium text-primary-600 mt-2 mr-3">
             <!-- bg-primary-300 text-white -->
-            <button @click="changeLevel(0)" :class="{'active': translateLevel===0}" class="low bg-primary-700 hover:bg-primary-500">low</button>
-            <button @click="changeLevel(1)" :class="{'active': translateLevel===1}" class="middle bg-primary-700 hover:bg-primary-500">middle</button>
-            <button @click="changeLevel(2)" :class="{'active': translateLevel===2}" class="high bg-primary-700 hover:bg-primary-500">high</button>
+            <button @click="changeLevel(0)" :class="{'active': translateLevel===0}" class="low bg-primary-700">low</button>
+            <button @click="changeLevel(1)" :class="{'active': translateLevel===1}" class="middle bg-primary-700">middle</button>
+            <button @click="changeLevel(2)" :class="{'active': translateLevel===2}" class="high bg-primary-700">high</button>
           </duv>
 
         </div>  
@@ -295,7 +295,7 @@ const changeLevel = (level) => {
   .right-top{
     width:100%;
     height:69px;
-    background: #DEE8DF;
+    background: #D6E9D8;
     border-radius: 15px 15px 0 0;
     box-shadow: 0 0px 20px 0 rgba(0, 0, 0, .05);
   }
@@ -306,15 +306,27 @@ const changeLevel = (level) => {
     height:50px;
     box-shadow: 0 0px 15px 0 rgba(0, 0, 0, .08);
   }
+  .reply:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.17);
+}
   .replyforall{
     width:125px;
     height:40px;
     box-shadow: 0 0px 15px 0 rgba(0, 0, 0, .08);
   }
+  .replyforall:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.17);
+  }
   .transfer{
     width:90px;
     height:40px;
     box-shadow: 0 0px 15px 0 rgba(0, 0, 0, .08);
+  }
+  .transfer:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.17);
   }
   
   .writebox{
@@ -334,7 +346,8 @@ const changeLevel = (level) => {
 
   .write2-top {
     border-radius: 15px 15px 0 0;
-    height: 28px;
+    height: 30px;
+    background: #D6E9D8;
   }
 
   .replysubject{
@@ -347,7 +360,7 @@ const changeLevel = (level) => {
   }
 
   .textarea {
-    height:303px
+    height:301px
   }
 
   .mailcontents {
@@ -359,7 +372,7 @@ const changeLevel = (level) => {
     place-items: center;
     width:70px;
     height:30px;
-    box-shadow: 0 0px 15px 0 rgba(0, 0, 0, .08);
+    box-shadow: 0 0px 15px 0 rgba(0, 0, 0, .09);
     border-radius: 15px 0px 0px 15px;
   }
 
@@ -368,7 +381,7 @@ const changeLevel = (level) => {
     place-items: center;
     width:70px;
     height:30px;
-    box-shadow: 0 0px 15px 0 rgba(0, 0, 0, .08);
+    box-shadow: 0 0px 15px 0 rgba(0, 0, 0, .09);
     border-radius: 0px 0px 0px 0px;
   }
 
@@ -377,8 +390,29 @@ const changeLevel = (level) => {
     place-items: center;
     width:70px;
     height:30px;
-    box-shadow: 0 0px 15px 0 rgba(0, 0, 0, .08);
+    box-shadow: 0 0px 15px 0 rgba(0, 0, 0, .09);
     border-radius: 0px 15px 15px 0px;
+  }
+
+  .low:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  }
+  .middle:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  }
+  .high:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+  }
+
+  .send{
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.17);
+}
+  .send:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
   }
 
   .active {
@@ -397,6 +431,10 @@ const changeLevel = (level) => {
   background: #FDFDFD;
   border: 1px solid;
   border-color: #467B55
+}
+.result-item:hover {
+
+
 }
 
 
