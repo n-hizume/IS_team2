@@ -1,6 +1,6 @@
 <template>
     <div @click="showSettingInformation"> 
-        <div class="cursor-pointer text-zinc-600">
+        <div class="cursor-pointer text-white">
             <Information :size="20"/>
         </div>
     </div>

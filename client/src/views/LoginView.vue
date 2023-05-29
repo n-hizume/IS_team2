@@ -1,16 +1,20 @@
 <template>
     <div id="LoginView" class="grid h-screen place-items-center">
+        <div class="video-container">
+            <video src="img/LoginMovie.mp4" autoplay loop muted playsinline ></video>
+        </div>
         <div class="container">
-            <div class="image-container">
-                <img class="login-image" src="img/GmailLogin.png" alt="">
-            </div>
-            <div class="font-semibold text-primary-600 login-btn m-5 mx-auto" @click="login">
-                Google ログイン
+            <div class="content ">
+                <div class="image-container">
+                    <img class="login-image" src="img/GmailLogin.png" alt="">
+                </div>
+                <div class="font-semibold text-primary-600 bg-white login-btn m-5" @click="login">
+                    Google ログイン
+                </div>
             </div>
         </div>
     </div>
 </template>
-
 
 <script setup>
 import { googleSdkLoaded } from "vue3-google-login";
@@ -46,8 +50,38 @@ const login = () => {
     align-items: center;
 }
 
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    background-color: white;
+    opacity: 0.3;
+    z-index: 2;
+}
+
 .container {
+    
+    position: relative;
     text-align: center;
+    z-index: 3;
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+     text-align: center;
 }
 
 .image-container {
@@ -64,10 +98,16 @@ const login = () => {
     padding: 10px;
     box-shadow: 0 0px 20px 0 rgba(0, 0, 0, .1);
     width: 200px; 
+    display: inline-block;
+    
+    
 }
 
 .login-btn:hover {
     cursor: pointer;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.25);
 }
+
+
+
 </style>
