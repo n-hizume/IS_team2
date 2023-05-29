@@ -1,25 +1,22 @@
 import openai
-import json
-import re
 
 from .creds.cred import API_KEY
 
 
 class chatGptManager:
     def __init__(self):
-        # with open("creds/gpt_credentials.json") as f:
-        #     info = json.load(f)
-
-        # openai.api_key = info["api_key"]
         openai.api_key = API_KEY
 
     def create_query(self, content, level=0):
+        level_str = ""
         if level == 0:
-            return f'「{content}」をローレベルな敬語に変換した文の例をいくつか挙げてください。'
+            level_str = "少し丁寧"
         elif level == 1:
-            return f'「{content}」をミドルレベルな敬語に変換した文の例をいくつか挙げてください。'
+            level_str = "丁寧"
         else:
-            return f'「{content}」をハイレベルな敬語に変換した文の例をいくつか挙げてください。'
+            level_str = "かなり丁寧"
+        
+        return f'「{content}」という言葉を、{level_str}な敬語に言い換えた例をいくつか挙げてください。'
 
     
     def parse_result(self, result: str):
@@ -32,16 +29,14 @@ class chatGptManager:
         return result
 
     def translate(self, content, level=0):
-        structure = "・「ans1」\n・「ans2」\n..."
-
         res = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[
                 {
                     "role": "user",
                     "content": self.create_query(content, level=level) 
-                                + "\n回答は以下の形式に従ってください\n" 
-                                + structure,
+                                + '\n回答は以下の形式のように、先頭に"・"をつけて箇条書きにしてください。\n'
+                                + "・「ans1」\n・「ans2」\n..."
                 },
             ],
         )
