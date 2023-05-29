@@ -74,6 +74,14 @@
       
     </div>  
     <div v-if="showReplyForm">
+      <div v-if="isTranslating">
+        <el-progress
+          :percentage="100"
+          status="success"
+          :indeterminate="true"
+          :duration="5"
+        />
+      </div>
       <div class="write mt-1.5">
         <div class="write2-top flex items-center justify-between w-full text-sm px-3.5 py-2.5 bg-primary-700 ">
           <div class="flex text-zinc-700">
@@ -166,6 +174,7 @@ import { sendMail } from "@/apis/mail";
 var router = useRouter();
 var mailId = router.currentRoute.value.query.id;
 var mail = store.getters.getMailById(mailId);
+var isTranslating = ref(false)
 
 const replyBody = ref("");
 const replySubject = ref("Re: " + mail.subject);
@@ -193,8 +202,10 @@ watch(
     if (lastChar === "、" || lastChar === "。") {
       const messages = newReplyBody.split(/。|、/);
       const lastMessage = messages[messages.length - 2];
+      isTranslating = true
       const translationResults = await translateByGpt(lastMessage.replaceAll("\n", ""), translateLevel);
       results.value = translationResults; // 結果を更新
+      isTranslating = false
     }
   }
 )
