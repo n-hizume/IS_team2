@@ -31,7 +31,7 @@
             </div>
           </div>  
           <div  style="font-size:14px" class="ml-2">
-            <div class="subject text-zinc-700" style="overflow: hidden;">
+            <div class="subject text-zinc-500 font-bold" style="overflow: hidden; ">
               <p>{{ mail.subject }}</p>
             </div>  
             <div class="snipet text-zinc-700" style="overflow:hidden">
