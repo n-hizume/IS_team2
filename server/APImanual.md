@@ -11,28 +11,28 @@
 ## response
 ```
 {
-    "access_token": "*****",
-    "refresh_token": "***",
+    "access_token": "string",
+    "refresh_token": "string",
     "expiry": int
 }
 ```
 
 # [POST] /mail/getall
 
-## request (client -> server)
+## request
 
 ```
 {
     "auth": {
-        "token": "*****",
-        "refresh_token": "***",
+        "token": "string",
+        "refresh_token": "string",
         "expiry": int
     }
 
 }
 ```
 
-## response (server -> client)
+## response
 ```
 { 
     "mails":[
@@ -57,12 +57,12 @@
 ```
 # [POST] mail/send
 
-## request (client -> server)
+## request
 ```
 {
     "auth": {
-        "token": "*****",
-        "refresh_token": "***",
+        "token": "string",
+        "refresh_token": "string",
         "expiry": int
     },
     "mail": {

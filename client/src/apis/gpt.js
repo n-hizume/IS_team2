@@ -1,4 +1,4 @@
-import { BASE_URL } from "./mail"
+import { BASE_URL } from "./creds/url"
 import axios from 'axios'
 
 export const translateByGpt = async (text, level=0) => {

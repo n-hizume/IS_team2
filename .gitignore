@@ -2,3 +2,7 @@
 .python-version
 __pycache__/
 node_modules/
+db.sqlite3
+creds/
+settings.py
+```

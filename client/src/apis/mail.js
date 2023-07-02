@@ -1,7 +1,6 @@
 import axios from 'axios'
 import store from '@/store/index';
-
-export const BASE_URL = 'http://kuisteam2.pythonanywhere.com'
+import { BASE_URL } from './creds/url';
 
 export const storeToken = async (code) => {
     const res = await axios.post(BASE_URL+'/mail/auth/', {
