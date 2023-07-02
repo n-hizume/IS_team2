@@ -7,9 +7,7 @@ GmailとChatGPTを組み合わせることで、ビジネスメールの作成�
 
 ## デモ動画
 実際に動いている様子のデモ動画です。
-<video controls>
-  <source src="asset/demo.mp4" type="video/mp4">
-</video>
+https://github.com/n-hizume/IS_team2/asset/demo.mp4
 
 ## 主な機能
 - Gmailにログインし、メールを送受信できる
