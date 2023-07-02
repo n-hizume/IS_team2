@@ -9,8 +9,8 @@ GmailとChatGPTを組み合わせることで、ビジネスメールの作成�
 実際に動いている様子のデモ動画です。
 
 
+https://github.com/n-hizume/IS_team2/assets/49773846/ec6deb4d-55f9-4018-b157-ef577a18a2fc
 
-https://github.com/n-hizume/IS_team2/assets/49773846/7fd37f80-b3d7-46fd-8c15-07defd318c98
 
 
 
