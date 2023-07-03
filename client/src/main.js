@@ -6,6 +6,7 @@ import router from './router'
 import store from './store'
 import './assets/tailwind.css'
 import vue3GoogleLogin from 'vue3-google-login'
+import { CLIENT_ID } from './creds/app'
 
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
@@ -20,7 +21,7 @@ app.use(store)
 app.use(ElementPlus)
 
 const options = {
-  clientId: '290280505278-jr662shaa29lke42ckon55fumjp8dn4b.apps.googleusercontent.com',
+  clientId: CLIENT_ID,
   scope: 'profile email',
   prompt: 'slelect_account'
 }
